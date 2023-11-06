@@ -1,0 +1,7 @@
+{
+  "name": "app-barber-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
