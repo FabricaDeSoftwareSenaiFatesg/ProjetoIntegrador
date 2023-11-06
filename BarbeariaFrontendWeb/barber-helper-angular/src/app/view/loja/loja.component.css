@@ -1,0 +1,78 @@
+.p-selectbutton .p-button.p-highlight {
+  background: #C07C5A !important;
+  border-color: #C07C5A !important;
+}
+
+.card-produto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  width: 290px;
+}
+
+.descricao-produto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.busca-carrinho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 60px;
+  padding-bottom: 50px;
+  margin-left: 55px;
+}
+
+.pi-shopping-cart {
+  color: #202020;
+  margin-left: 30px;
+}
+
+.numero-produtos {
+  background-color: #C07C5A;
+  color: white;
+  border-radius: 28px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.label-descricao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-quantidade {
+  border-color: #C07C5A;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  align-self: center;
+}
+
+.produto-selecionado {
+  margin-left: 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rodape-carrinho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fundo-loja {
+  height: 100%;
+  background-color: #F9F5F2;
+}

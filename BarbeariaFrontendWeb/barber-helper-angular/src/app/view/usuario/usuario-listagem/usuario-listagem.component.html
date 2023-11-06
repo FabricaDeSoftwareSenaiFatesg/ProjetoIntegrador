@@ -1,0 +1,96 @@
+<p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="fundo-sistema">
+  <div class="tela-listagem">
+    <div class="col posicionamento-botao">
+      <button class="btn botao1" (click)="cadastrar()">
+        <i class="icone pi pi-plus"></i>
+      </button>
+    </div>
+
+    <div class="tabela-dados" *ngIf="usuarioLogadoTemAtribuicao">
+      <p-table [value]="listaEntidades" [responsive]="true" emptyMessage="Nenhum registro encontrado." [tableStyle]="{ 'min-width': '50rem' }" [lazy]="true" (onLazyLoad)="listar()">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nome</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Tipo de Usuário</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-obj>
+          <tr>
+            <td>{{ obj.pessoa.nome }}</td>
+            <td class="text-center">{{ obj.email }}</td>
+            <td class="text-center">{{ obj.tipo }}</td>
+            <td class="text-center">
+              <label-status [ativo]="obj.ativo"></label-status>
+            </td>
+            <td class="text-center">
+              <coluna-opcoes [ativo]="obj.ativo"
+                            (onEditar)="cadastrar(obj)"
+                            (onVisualizar)="visualizar(obj)"
+                            (onExcluir)="excluir(obj)"
+                            (onStatus)="status(obj.id)">
+              </coluna-opcoes>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <p-dialog header="Usuário" [maximizable]="false" [draggable]="false" [(visible)]="modalCadastro" [modal]="true" [style]="{width: '80vw'}" (onHide)="isVisualizacao = false">
+    <div class="form form-cadastro">
+      <div class="row">
+        <div class="col-6 input-grupo">
+          <label class="label-input">Nome do Usuário</label>
+          <input [disabled]="isVisualizacao" type="text" class="input-personalizado" pInputText placeholder="Ex.: Oliveira..." [(ngModel)]="entidadeForm.pessoa.nome"/>
+        </div>
+
+        <div class="col-6 input-grupo">
+          <label class="label-input">CPF</label>
+          <input [disabled]="isVisualizacao" type="text" class="input-personalizado" pInputText placeholder="Ex.: 999.999.999-99" [(ngModel)]="entidadeForm.pessoa.cpf"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 input-grupo">
+          <label class="label-input">Telefone</label>
+          <input [disabled]="isVisualizacao" type="text" class="input-personalizado" pInputText placeholder="Ex.: (99)99999-9999" [(ngModel)]="entidadeForm.pessoa.telefone"/>
+        </div>
+
+        <div class="col-6 input-grupo">
+          <label class="label-input">Email</label>
+          <input [disabled]="isVisualizacao" type="text" class="input-personalizado" pInputText placeholder="seu_email@gmail.com" [(ngModel)]="entidadeForm.email"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 input-grupo">
+          <label class="label-input">Senha</label>
+          <input [disabled]="isVisualizacao" type="password" class="input-personalizado" pInputText
+                [(ngModel)]="entidadeForm.senha"/>
+        </div>
+
+        <div class="col-6 input-grupo" style="height: 40px;">
+          <label class="label-input">Tipo de Usuário</label>
+          <p-dropdown [disabled]="isVisualizacao" class="input-personalizado" [options]="tiposUsuario" [(ngModel)]="entidadeForm.tipo"></p-dropdown>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6 input-grupo" style="display: flex; justify-content: flex-end;">
+          <label class="label-input">Status</label>
+          <p-toggleButton [disabled]="isVisualizacao" [(ngModel)]="entidadeForm.ativo" onLabel="Ativo" offLabel="Inativo" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{ width: '10em', heigth: '2em' }"></p-toggleButton>
+        </div>
+
+        <div class="col-6 input-grupo">
+          <div *ngIf="!isVisualizacao" class="col" style="display: flex; justify-content: flex-end;">
+            <button class="btn-confimar" type="submit" (click)="salvar()">CONFIRMAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>

@@ -1,0 +1,27 @@
+<div class="fundo-sistema">
+  <div class="row">
+    <div class="col-md-6" style="margin-bottom: 50px;">
+      <div class="card grafico1" *ngIf="basicData != null && basicData != undefined">
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+      </div>
+      <div class="card grafico1" *ngIf="basicData != null && basicData != undefined">
+        <p-chart type="line" [data]="data" [options]="options"></p-chart>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row card alinhamento">
+        <div class="grafico2" *ngIf="basicData != null && basicData != undefined">
+          <p-chart type="doughnut" [data]="dataGraficoServicos" [options]="optionsGraficoServicos"></p-chart>
+        </div>
+        <div class="grafico3" *ngIf="basicData != null && basicData != undefined">
+          <p-chart type="polarArea" [data]="dataGraficoFuncionarios" [options]="optionsGraficoFuncionario"></p-chart>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<div class="card grafico4" *ngIf="basicData != null && basicData != undefined">
+  <p-chart type="line" [data]="data" [options]="options"></p-chart>
+</div>-->

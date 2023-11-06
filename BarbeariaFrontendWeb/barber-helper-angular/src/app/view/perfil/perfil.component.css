@@ -1,0 +1,112 @@
+.cards {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin: 10px;
+  width: auto;
+  height: 90%;
+}
+
+.card-perfil {
+  background-color: white;
+  border-radius: 5px;
+  margin-right: 15px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-reserva {
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-pedido {
+  background-color: white;
+  border-radius: 5px;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-perfil {
+  max-height: 35px;
+  font-family: 'Khand', sans-serif;
+  font-size: 2rem;
+  align-content: center;
+}
+
+.icone-perfil {
+  padding: 0;
+}
+
+.dados-perfil {
+  display: flex;
+  flex-direction: column;
+}
+
+.titulo-reserva {
+  max-height: 35px;
+  font-family: 'Khand', sans-serif;
+  font-size: 2rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.titulo-pedido {
+  max-height: 35px;
+  font-family: 'Khand', sans-serif;
+  font-size: 2rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.dados-reserva {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.criar-reserva {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dados-pedido {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.criar-pedido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listar-dados {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.info-reserva {
+  display: flex;
+  flex-direction: column;
+}
+
+.pi {
+  color: #c07c5a;
+}

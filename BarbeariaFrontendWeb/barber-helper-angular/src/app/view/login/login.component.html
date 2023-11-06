@@ -1,0 +1,126 @@
+<p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="d-lg-flex half" *ngIf="!flagNovoUsuario && !flagRecuperarSenha">
+  <div class="bg order-1 order-md-2" style="background-color: black;">
+    <img class="d-flex centralizado tamanho-100vh" src="assets/logo.svg" alt="imagemLateral">
+  </div>
+
+  <div class="contents order-2 order-md-1">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-7">
+
+          <p class="khand-font-login">Logar em <strong>Studio Oliveira's</strong></p>
+          <p class="color-888888">Seja bem-vindo! Utilize seu usuário e senha para logar no sistema</p>
+
+          <div class="form-group first mb-3 border-10">
+            <label class="mb-2" for="username">Email</label>
+            <input pInputText type="text" class="p-inputtext-sm" placeholder="seu_email@gmail.com" [(ngModel)]="usuarioLogin.email"/>
+          </div>
+          <div class="form-group last mb-3">
+            <label class="mb-2" for="password">Senha</label>
+            <input type="password" class="p-inputtext-sm" pInputText [(ngModel)]="usuarioLogin.senha" />
+          </div>
+
+          <div class="d-flex mb-3 align-items-center">
+            <span (click)="cadastrarUsuario()"><a class="cadastrar-usuario">Cadastre-se</a></span>
+            <span class="ml-auto" (click)="recuperarSenha()"><a class="forgot-pass">Esqueci minha senha</a></span>
+          </div>
+
+          <input (click)="login()" value="Login" class="btn btn-block botao-preto col-md-12">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--CADASTRAR-->
+<div *ngIf="flagNovoUsuario">
+
+  <div class="seta-voltar">
+    <i class="pi pi-arrow-left" pTooltip="Voltar" (click)="voltarLogin()"></i>
+  </div>
+  <div class="d-lg-flex half">
+
+    <div class="bg order-1 order-md-2" style="background-color: black;">
+      <img class="d-flex centralizado tamanho-100vh" src="assets/logo.svg" alt="imagemLateral">
+    </div>
+
+    <div class="contents order-2 order-md-1">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7">
+
+            <p class="khand-font-login"><strong>Cadastre-se</strong></p>
+
+            <div class="form-group first mb-3 border-10">
+              <label class="mb-2" for="nome">Nome</label>
+              <input pInputText type="text" class="p-inputtext-sm" placeholder="Ex.: Oliveira..." [(ngModel)]="novoUsuario.pessoa.nome"/>
+            </div>
+            <div class="form-group mb-3 border-10">
+              <label class="mb-2" for="cpf">CPF</label>
+              <p-inputMask class="p-inputtext-sm" mask="999.999.999-99" [(ngModel)]="novoUsuario.pessoa.cpf" placeholder="Ex.: 999.999.999-99"></p-inputMask>
+            </div>
+            <div class="form-group mb-3 border-10">
+              <label class="mb-2" for="telefone">Telefone</label>
+              <p-inputMask class="p-inputtext-sm" mask="(99) 99999-9999" [(ngModel)]="novoUsuario.pessoa.telefone" placeholder="Ex.: (99)99999-9999"></p-inputMask>
+            </div>
+            <div class="form-group first mb-3 border-10">
+              <label class="mb-2" for="email">Email</label>
+              <input pInputText type="text" class="p-inputtext-sm" placeholder="seu_email@gmail.com" [(ngModel)]="novoUsuario.email"/>
+            </div>
+            <div class="form-group last mb-3">
+              <label class="mb-2" for="password">Senha</label>
+              <input type="password" class="p-inputtext-sm" pInputText [(ngModel)]="novoUsuario.senha" />
+            </div>
+
+            <input (click)="cadastrarNovoUsuario()" value="Cadastrar-se" class="btn btn-block botao-preto col-md-12">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!--RECUPERAR SENHA-->
+<div *ngIf="flagRecuperarSenha">
+
+  <div class="seta-voltar">
+    <i class="pi pi-arrow-left" pTooltip="Voltar" (click)="voltarLogin()"></i>
+  </div>
+  <div class="d-lg-flex half">
+
+    <div class="bg order-1 order-md-2" style="background-color: black;">
+      <img class="d-flex centralizado tamanho-100vh" src="assets/logo.svg" alt="imagemLateral">
+    </div>
+
+    <div class="contents order-2 order-md-1">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7">
+
+            <p class="khand-font-login"><strong>Recuperar senha</strong></p>
+            <p class="color-888888">Enviaremos um email com a senha nova!</p>
+
+            <div class="form-group first mb-3 border-10">
+              <label class="mb-2" for="email">Email</label>
+              <input pInputText type="text" class="p-inputtext-sm" placeholder="seu_email@gmail.com" [(ngModel)]="usuarioRecuperarSenha.email"/>
+            </div>
+            <div class="form-group mb-3 border-10">
+              <label class="mb-2" for="cpf">CPF</label>
+              <p-inputMask class="p-inputtext-sm" mask="999.999.999-99" [(ngModel)]="usuarioRecuperarSenha.pessoa.cpf" placeholder="Ex.: 999.999.999-99"></p-inputMask>
+            </div>
+
+            <input (click)="enviarEmailComSenhaNova()" value="Enviar" class="btn btn-block botao-preto col-md-12">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

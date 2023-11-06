@@ -1,0 +1,137 @@
+<div class="fundo-sistema">
+  <div class="row">
+    <h3 class="khand-font-700 titulos">Listar Reservas</h3>
+
+    <div class="col-md-4">
+      <label class="label-input popins-font">Data e Hora</label>
+      <div class="inputComIcone">
+        <input type="date" [(ngModel)]="data">
+        <img class="d-flex imagem margin-bottom teste" src="assets/IconeData.svg" alt="imagemLateral">
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label class="label-input popins-font">Profissional</label>
+      <div class="inputComIcone">
+        <select [(ngModel)]="profissionalSelecionado">
+          <option *ngFor="let profissional of profissionais" [value]="profissional.id">{{profissional.nome}}</option>
+        </select>
+        <img class="d-flex imagem margin-bottom teste2" src="assets/IconeBarbeiro.svg" alt="imagemLateral">
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <button class="btn botao1" (click)="listarFiltrado()">
+        <i class="icone pi pi pi-search"></i>
+      </button>
+
+      <button class="btn botao2">
+        <i class="icone pi pi-plus" (click)="redirecionarParaAgendamento('reserva/novo')"></i>
+      </button>
+    </div>
+
+    <div class="tabela-dados">
+      <p-table [value]="listaEntidades" [responsive]="true" emptyMessage="Nenhum registro encontrado." [tableStyle]="{ 'min-width': '50rem' }" [lazy]="true" (onLazyLoad)="listarFiltrado()">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Cliente</th>
+            <th class="text-center">Profissional</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Inicio</th>
+            <th class="text-center">Fim</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-obj>
+          <tr>
+            <td>{{ obj.clienteNome }}</td>
+            <td class="text-center">{{ obj.funcionarioNome }}</td>
+            <td class="text-center">{{ obj.data }}</td>
+            <td class="text-center">{{ obj.inicio }}</td>
+            <td class="text-center">{{ obj.fim }}</td>
+            <td class="text-center">{{ obj.status }}</td>
+
+            <td class="text-center">
+              <coluna-opcoes [showEditar]="false"
+                [showExcluir]="false"
+                [showStatus]="false"
+                (onVisualizar)="visualizar(obj)">
+              </coluna-opcoes>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <p-dialog header="Reserva" [draggable]="false" [(visible)]="isVisualizacao" [modal]="true" [style]="{width: '80vw'}" (onHide)="isVisualizacao = false">
+      <div class="cadastro" *ngIf="reservaVizualizacao != null">
+        <div class="form form-cadastro">
+          <div class="row">
+            <div class="col-6">
+              <div class="row">
+                <div class="col input-grupo">
+                  <label class="label-input">Cliente</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.clienteNome" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 input-grupo">
+                  <label class="label-input">Status</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.status" />
+                </div>
+
+                <div class="col-6 input-grupo">
+                  <label class="label-input">Data</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.data" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col input-grupo">
+                  <label class="label-input">Serviços</label>
+                  <p-multiSelect [disabled]="true" class="input-personalizado" [options]="reservaVizualizacao.servicos"
+                                 [(ngModel)]="reservaVizualizacao.servicos" optionLabel="descricao"></p-multiSelect>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="row">
+                <div class="col input-grupo">
+                  <label class="label-input">Funcionario</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.funcionarioNome" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 input-grupo">
+                  <label class="label-input">Inicio</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.inicio" />
+                </div>
+
+                <div class="col-6 input-grupo">
+                  <label class="label-input">Fim</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.fim" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6 input-grupo">
+                  <label class="label-input">Tempo</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.tempoTotal" />
+                </div>
+
+                <div class="col-6 input-grupo">
+                  <label class="label-input">Total</label>
+                  <input [disabled]="true" type="text" class="input-personalizado" pInputText [(ngModel)]="reservaVizualizacao.valorTotal" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-dialog>
+  </div>
+</div>

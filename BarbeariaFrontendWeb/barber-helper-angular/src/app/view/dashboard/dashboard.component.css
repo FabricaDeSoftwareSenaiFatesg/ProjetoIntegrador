@@ -1,0 +1,40 @@
+.fundo-sistema {
+    height: 100%;
+    width: 100%;
+    background-color: #F9F5F2;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .card {
+    height: auto;
+    margin-top: 50px;
+  }
+  
+  .alinhamento{
+    align-items: center;
+  }
+
+  .grafico1 {
+    width: 100%;
+  }
+   
+  .grafico2 {
+    margin-top: 100px;
+    width: 340px;
+    height: 300px;
+  }
+  
+  .grafico3 {
+    margin-top: 120px;
+    width: 340px;
+    height: 290px;
+    margin-bottom: 100px;
+  }
+  
+  

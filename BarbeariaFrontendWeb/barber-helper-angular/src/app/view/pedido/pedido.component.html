@@ -1,0 +1,36 @@
+<div class="tela-listagem">
+
+  <div class="tabela-dados">
+
+    <p-table [value]="listaEntidades" [responsive]="true" emptyMessage="Nenhum registro encontrado." [tableStyle]="{ 'min-width': '50rem' }" [lazy]="true" (onLazyLoad)="listar()">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Descrição</th>
+              <th class="text-center">Valor</th>
+              <th class="text-center">Quantidade</th>
+              <th class="text-center">Status</th>
+              <th class="text-center">Ações</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-obj>
+          <tr>
+              <td>{{ obj.descricao }}</td>
+              <td class="text-center">{{ obj.valor }}</td>
+              <td class="text-center">{{ obj.quantidade }}</td>
+              <td class="text-center">
+                <label-status [ativo]="obj.ativo"></label-status>
+              </td>
+              <td class="text-center">
+                <coluna-opcoes [ativo]="obj.ativo"
+                                (onEditar)="cadastrar(obj)"
+                                (onVisualizar)="visualizar(obj)"
+                                (onExcluir)="excluir(obj)"
+                                (onStatus)="status(obj.id)"></coluna-opcoes>
+            </td>
+          </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+
+</div>

@@ -1,0 +1,128 @@
+
+.container-fluid {
+  height: 94vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.style-background {
+  background-image: url(/assets/background-home.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.font-color {
+  color: #F2DAC2
+}
+
+.text-align-justify{
+  text-align: justify;
+}
+
+.font-size-10vh{
+  font-size: 7vh;
+}
+
+.text-shadow{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 3.5vh;
+}
+
+.btn-confimar {
+  display: inline-block;
+  position: relative;
+  color: #f9f5f2;
+  background: #c07c5a;
+  font-family: 'Khand', sans-serif;
+  font-size: 23px;
+  font-weight: 500;
+  text-align-all: center;
+  border: 2px solid #c07c5a;
+  border-radius: 8px;
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.5s;
+  width: auto;
+  height: 2.5rem;
+}
+
+.btn-confimar:before {
+  content: "";
+  position: absolute;
+  background: #f9f5f2;
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.btn-confimar:hover {
+  color: #c07c5a;
+}
+
+.btn-confimar:before {
+  top: 100%;
+  left: 100%;
+  transition: 0.7s;
+}
+
+.btn-confimar:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.btn-confimar:active:before {
+  background: #f9f5f2;
+  transition: 0s;
+}
+
+.margem {
+  margin: 0 10vh;
+}
+
+.imagem {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+  width: 100%;
+  heigth: auto;
+}
+
+.rodape-retangulo{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.div-centralizada {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.texto-centralizado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.font-color-titulo {
+  color: #C07C5A
+}
+
+.retangulo{
+  height: 15vh;
+  width: 0.1vh;
+  background-color: white;
+}
+
+.margin-bottom {
+  margin-bottom: 20vh;
+}

@@ -1,0 +1,46 @@
+<div class="cadastro">
+
+  <div class="form form-cadastro">
+
+    <div class="row">
+
+      <div class="col input-grupo">
+        <label htmlFor="nome" class="label-input">Nome</label>
+        <input type="text" class="input-personalizado" pInputText [(ngModel)]="entidade.nome" />
+      </div>
+
+      <div class="col input-grupo">
+        <label htmlFor="cpf" class="label-input">CPF</label>
+        <p-inputMask class="input-personalizado" mask="999.999.999-99" [(ngModel)]="entidade.cpf"></p-inputMask>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col input-grupo">
+        <label htmlFor="telefone" class="label-input">Telefone</label>
+        <p-inputMask class="input-personalizado" mask="(99) 9-9999-9999" [(ngModel)]="entidade.telefone"></p-inputMask>
+      </div>
+
+      <div class="col-2 input-grupo switch-input">
+        <label htmlFor="cpf" class="label-input">Funcionário</label>
+        <p-inputSwitch [(ngModel)]="entidade.flagFuncionario"><span>{{entidade.flagFuncionario? "Sim" : "Não"}}</span></p-inputSwitch>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col input-grupo">
+        <label htmlFor="descricaoFuncionario" class="label-input">Descrição funcionário</label>
+        <input type="text" class="input-personalizado" pInputText [disabled]="!entidade.flagFuncionario" [(ngModel)]="entidade.descricaoFuncionario" />
+      </div>
+    </div>
+
+    <div class="col" style="display: flex; justify-content: flex-end; margin-right: 7rem;">
+      <button class="btn-confimar" type="submit">CONFIRMAR</button>
+    </div>
+
+  </div>
+
+</div>

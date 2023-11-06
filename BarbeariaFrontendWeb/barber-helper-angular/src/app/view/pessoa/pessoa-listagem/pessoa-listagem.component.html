@@ -1,0 +1,31 @@
+<div class="tela-listagem">
+
+  <div class="div-novo-cadastro">
+    <button class="btn-novo-cadastro" (click)="cadastrar()">NOVO</button>
+  </div>
+
+  <div class="tabela-dados">
+
+    <p-table [value]="pessoas" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+          <tr class="popins-font-500">
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>Telefone</th>
+              <th>Funcionário</th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pessoa>
+          <tr>
+              <td>{{ pessoa.nome }}</td>
+              <td>{{ pessoa.cpf }}</td>
+              <td>{{ pessoa.telefone }}</td>
+              <td>{{ pessoa.flagFuncionario? "Sim" : "Não" }}</td>
+          </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+
+</div>

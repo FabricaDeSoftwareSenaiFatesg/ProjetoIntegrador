@@ -1,0 +1,74 @@
+<p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="fundo-sistema">
+  <div class="tela-listagem">
+    <div class="col posicionamento-botao">
+      <button class="btn botao1" (click)="cadastrar()">
+        <i class="icone pi pi-plus"></i>
+      </button>
+    </div>
+
+    <div class="tabela-dados">
+      <p-table [value]="listaEntidades" [responsive]="true" emptyMessage="Nenhum registro encontrado." [tableStyle]="{ 'min-width': '50rem' }" [lazy]="true" (onLazyLoad)="listar()">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Descrição</th>
+            <th class="text-center">Valor</th>
+            <th class="text-center">Quantidade</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-obj>
+          <tr>
+            <td>{{ obj.descricao }}</td>
+            <td class="text-center">{{ obj.valor }}</td>
+            <td class="text-center">{{ obj.quantidade }}</td>
+            <td class="text-center">
+              <label-status [ativo]="obj.ativo"></label-status>
+            </td>
+            <td class="text-center">
+              <coluna-opcoes [ativo]="obj.ativo"
+                (onEditar)="cadastrar(obj)"
+                (onVisualizar)="visualizar(obj)"
+                (onExcluir)="excluir(obj)"
+                (onStatus)="status(obj.id)">
+              </coluna-opcoes>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <p-dialog header="Novo Produto" [maximizable]="false" [draggable]="false" [(visible)]="modalCadastro" [modal]="true" [style]="{width: '80vw'}" (onHide)="isVisualizacao = false">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="col input-grupo">
+          <label htmlFor="descricao" class="label-input">Descrição</label>
+          <input [disabled]="isVisualizacao" type="text" class="input-personalizado" pInputText [(ngModel)]="entidadeForm.descricao" />
+        </div>
+
+        <div class="col input-grupo">
+          <label htmlFor="imagem" class="label-input">Imagem</label>
+          <imagem-preview [maxLength]="2000000" [entidade]="entidadeForm" [visualizacao]="isVisualizacao"></imagem-preview>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="col input-grupo">
+          <label htmlFor="valor" class="label-input">Valor</label>
+          <p-inputNumber [disabled]="isVisualizacao" class="input-personalizado" [(ngModel)]="entidadeForm.valor" inputId="currency-br" mode="currency" currency="BRL" locale="pt-BR"></p-inputNumber>
+        </div>
+
+        <div class="col input-grupo">
+          <label htmlFor="quantidade" class="label-input">Quantidade</label>
+            <p-inputNumber [disabled]="isVisualizacao" class="input-personalizado" inputId="integeronly" [(ngModel)]="entidadeForm.quantidade"></p-inputNumber>
+        </div>
+
+        <div class="col input-grupo" *ngIf="!isVisualizacao" style="direction: rtl; padding-top: 70px;">
+          <button class="btn-confimar" type="submit" (click)="salvar()">CONFIRMAR</button>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>

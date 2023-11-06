@@ -1,0 +1,55 @@
+<p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="fundo-sistema">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="input-reserva">
+        <h3 class="khand-font-700 titulos">Agende seu horário</h3>
+        <label htmlFor="servicos" class="label-input popins-font">Serviços</label>
+        <p-multiSelect class="input-personalizado" [options]="servicos" [(ngModel)]="servicosSelecionados" optionLabel="descricao" (onChange)="onChangeServicos()"></p-multiSelect>
+      </div>
+      <div class="input-reserva">
+        <label htmlFor="profissional" class="label-input popins-font">Profissional</label>
+        <p-dropdown class="input-personalizado" [options]="profissionais" [(ngModel)]="profissionalSelecionado" optionLabel="nome" (onChange)="onChangeProfissional()" placeholder="-" [disabled]="servicosSelecionados.length==0"></p-dropdown>
+      </div>
+      <div class="input-reserva">
+        <p-calendar [(ngModel)]="data" [inline]="true" [showWeek]="true" (onSelect)="consultarHorarios()" [disabled]="profissionalSelecionado.length==0"></p-calendar>
+      </div>
+      <div class="input-reserva">
+        <label htmlFor="horarios" class="label-input popins-font">Horários disponíveis</label>
+        <p-dropdown class="input-personalizado" [options]="horarios" [(ngModel)]="horarioSelecionado" (onChange)="onChangeDataHora()" placeholder="-" [disabled]="desabilitarHorarios"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="input-reserva">
+        <h3 class="khand-font-700 titulos text-right">Informações do agendamento</h3>
+        <label htmlFor="profissional" class="label-input popins-font">Serviços</label>
+        <div class="inputComIcone">
+          <input type="text" [(ngModel)]="informacoes.servicos">
+          <img class="d-flex imagem margin-bottom" src="assets/IconeTesoura.svg" alt="imagemLateral">
+        </div>
+      </div>
+      <div class="input-reserva">
+        <label htmlFor="profissional" class="label-input popins-font">Profissional</label>
+        <div class="inputComIcone">
+          <input type="text" [(ngModel)]="informacoes.profissional">
+          <img class="d-flex imagem margin-bottom" src="assets/IconeBarbeiro.svg" alt="imagemLateral">
+        </div>
+      </div>
+      <div class="input-reserva">
+        <label htmlFor="profissional" class="label-input popins-font">Data e Hora</label>
+        <div class="inputComIcone">
+          <input type="text" [(ngModel)]="informacoes.dataHora">
+          <img class="d-flex imagem margin-bottom" src="assets/IconeData.svg" alt="imagemLateral">
+        </div>
+        <h2 class="khand-font-700 titulos text-right" style="margin-bottom: 20px;">Valor Total</h2>
+        <h1 class="khand-font-700 titulo-valor text-right" style="color: #c07c5a; margin-top: 0;">R$ {{informacoes.total}}</h1>
+
+        <div class="grupo-botoes">
+          <button class="btn-editar" (click)="redirecionarParaRota('')">CANCELAR</button>
+          <button class="btn-confimar" (click)="confirmarReserva()" [disabled]="horarioSelecionado==''">CONFIRMAR</button>
+        </div>
+      </div>
+  </div>
+</div>
+</div>

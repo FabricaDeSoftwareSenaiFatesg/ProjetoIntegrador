@@ -1,0 +1,64 @@
+<p-messages [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
+<div class="fundo-loja">
+  <div class="busca-carrinho">
+    <span class="p-input-icon-right">
+      <i class="pi pi-search" style="top: 8px;"></i>
+      <input type="text" pInputText placeholder="Faça sua busca aqui..." style="width: 500px;" [(ngModel)]="descricaoBusca" (keyup.enter)="pesquisar()"/>
+    </span>
+    <a (click)="carrinhoCompras = true" title="Carrinho"><i class="pi pi-shopping-cart" style="font-size: 2rem"></i></a>
+    <div class="numero-produtos">
+      <span style="cursor: default; font-size: 12px;">{{produtosSelecionados.length}}</span>
+    </div>
+  </div>
+  <div class="row m-1" style="justify-content: center;">
+    <div class="col-md-auto card-produto" *ngFor="let produto of produtos">
+      <img [src]="obterConteudoFormatado(produto)" *ngIf="produto && produto.imagem" style="margin: 15px;" height="190" width="190"/>
+      <div class="descricao-produto">
+        <span style="font-weight: 500; font-size: 20px; text-align: center;">{{ produto.descricao }}</span>
+        <span style="font-weight: 700; font-size: 23px;">{{ 'R$' + produto.valor }}</span>
+      </div>
+      <label for="estoque" *ngIf="produto.quantidade < 1">Sem estoque</label>
+      <button class="btn-confimar" *ngIf="produto.quantidade > 0" style="font-size: 18px; margin: 15px;" type="submit" (click)="adicionarProdutoCarrinho(produto)">COMPRAR</button>
+    </div>
+    <label *ngIf="produtos.length == 0" for="semProduto" style="text-align-last: center;">Sem produtos cadastrados no momento!</label>
+  </div>
+</div>
+
+<p-sidebar [(visible)]="carrinhoCompras" position="right" styleClass="w-30rem">
+
+  <ng-template pTemplate="header">
+    <label style="font-family: 'Khand', sans-serif; font-weight: 700; font-size: 25px;" for="titulo">CARRINHO DE COMPRAS</label>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <div *ngIf="produtosSelecionados.length > 0" class="lista-produtos">
+      <p-scrollPanel [style]="{ height: '500px' }">
+
+        <div class="cards-selecionado" *ngFor="let produto of produtosSelecionados">
+          <p-divider></p-divider>
+          <div class="produto-selecionado">
+            <div class="label-descricao">
+              <label for="produtoSelecionado" style="font-weight: 700; font-size: 18px; max-width: 300px;">{{ produto.descricao }}</label>
+              <label for="produtoSelecionado" style="font-weight: 700; font-size: 20px;">{{ 'R$' + produto.valor }}</label>
+            </div>
+            <div class="input-quantidade">
+              <i class="pi pi-minus btn-edit-qtd" style="margin: 10px; cursor: pointer;" (click)="diminuirQtd(produto)"></i>
+              <label for="produtoSelecionado">{{ produto.quantidade }}</label>
+              <i class="pi pi-plus btn-edit-qtd" style="margin: 10px;cursor: pointer;" (click)="aumentarQtd(produto)"></i>
+            </div>
+          </div>
+        </div>
+
+      </p-scrollPanel>
+    </div>
+    <label *ngIf="produtosSelecionados.length == 0" for="semProduto" style="text-align-last: center;">Carrinho vazio!</label>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <div class="rodape-carrinho" *ngIf="produtosSelecionados.length > 0">
+      <button class="btn-confimar" style="font-size: 18px; margin: 15px;" (click)="confirmarPedido()">CONFIRMAR</button>
+      <label for="total" style="font-weight: 700; font-size: 30px;">{{ somarTotal() }}</label>
+    </div>
+  </ng-template>
+
+</p-sidebar>

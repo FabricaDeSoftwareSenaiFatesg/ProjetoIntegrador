@@ -1,0 +1,75 @@
+/*
+  Estilo da barra de menu:
+  1º- Define a cor de fundo da barra de menu;
+  2º- Faz com que os elementos dentro da barra sejam exibidos em linha;
+  3º- Centraliza horizontalmente os elementos dentro da barra;
+  4º- Define a altura da barra do menu.
+*/
+.panel {
+  background-color: #202020;
+  display: flex;
+  justify-content: center;
+  height: 55px;
+}
+
+/*
+  Estilo da lista de links:
+  1º- Centraliza o texto dos links;
+  2º- Faz com que os elementos dentro da lista sejam exibidos em linha;
+  3º- Centraliza verticalmente os elementos dentro da lista.
+*/
+.main-nav {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.menu-sanduiche{
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+  color:white;
+}
+
+/*
+  Estilo dos links:
+  1º- Define a fonte dos links;
+  2º- Define o tamanho da fonte dos links;
+  3º- Define a cor dos links;
+  4º- Remove a sublinhado dos links.
+*/
+.main-nav a {
+  font-family: 'Khand', sans-serif;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.whatsapp i,
+.instagram i,
+.config i,
+.login i{
+  font-size: 1.2rem;
+  color: white;
+}
+
+.config i{
+  width: 30px;
+  margin-left: 5px;
+}
+
+.whatsapp i,
+.instagram i,
+.login i {
+  margin: 0 10px;
+}
+
+/*
+  Cria efeito hover para os links e ícones:
+  1º- Muda a cor e garante que isso aconteça independente das regras;
+*/
+.whatsapp i:hover,
+.instagram i:hover,
+.config i:hover,
+.main-nav a:hover{
+  color: #C07C5A !important;
+}
