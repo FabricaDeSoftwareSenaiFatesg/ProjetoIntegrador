@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,12 @@ export class HomePage {
 
   responsiveOptions: any[] | undefined;
 
-  constructor(private menuCtrl: MenuController) {}
+  constructor(
+    private menuCtrl: MenuController,
+    protected changeDetectorRef: ChangeDetectorRef,
+    protected router: Router,
+    protected activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
 
