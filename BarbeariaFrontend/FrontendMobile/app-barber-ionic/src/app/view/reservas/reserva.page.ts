@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {AgendamentoPage} from "./agendamento/agendamento.page";
-import {ReservaPerfil} from "../../../arquitetura/modelo/reserva-perfil";
 import {NavController} from "@ionic/angular";
 
 @Component({
@@ -13,9 +11,6 @@ export class ReservaPage {
   listaAgendamentos: any[] = [];
 
   constructor(private navigation: NavController) {}
-
-  reservaComponente = ReservaPage;
-  agendamentoComponente = AgendamentoPage;
 
   ngOnInit() {
 

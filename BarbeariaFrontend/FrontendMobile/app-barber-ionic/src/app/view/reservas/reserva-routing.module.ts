@@ -1,22 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {ReservaPage} from "./reserva.page";
+import {TabsPage} from "../tabs/tabs.page";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tabs/reserva',
-    pathMatch: 'full',
-  },
-  {
-    path: 'agendamento',
-    redirectTo: '/tabs/reserva/agendamento',
-    pathMatch: 'full'
+    component: ReservaPage
   },
   {
     path: 'agendamento',
     loadChildren: () => import('./agendamento/agendamento.module').then( m => m.AgendamentoPageModule)
   }
-
 ];
 
 @NgModule({

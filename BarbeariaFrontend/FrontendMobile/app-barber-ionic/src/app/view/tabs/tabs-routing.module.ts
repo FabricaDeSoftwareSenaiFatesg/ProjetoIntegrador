@@ -13,16 +13,7 @@ const routes: Routes = [
       },
       {
         path: 'reserva',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../reservas/reserva.module').then(m => m.ReservaPageModule)
-          }  ,
-          {
-            path: 'agendamento',
-            loadChildren: () => import('../reservas/agendamento/agendamento.module').then(m => m.AgendamentoPageModule)
-          }
-        ],
+        loadChildren: () => import('../reservas/reserva.module').then(m => m.ReservaPageModule)
       },
       {
         path: 'perfil',

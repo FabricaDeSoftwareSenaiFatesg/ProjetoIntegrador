@@ -7,14 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: AgendamentoPage
-  },
-  {
-    path: 'select-servico',
-    loadChildren: () => import('./select-servico/select-servico.module').then(m => m.SelectServicoPageModule)
-  },
-  {
-    path: 'select-servico',
-    loadChildren: () => import('./select-servico/select-servico.module').then( m => m.SelectServicoPageModule)
   }
 ];
 
