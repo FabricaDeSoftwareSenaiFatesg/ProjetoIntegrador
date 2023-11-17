@@ -69,7 +69,7 @@
   <section>
     <h1 class="titulos">HORÁRIOS</h1> 
     <div class="horarios">
-      <ion-list>
+      <ion-list lines="none" [inset]="false">
         <ion-item *ngFor="let day of diasSemana; let i = index">
           <ion-label class="text">{{ day }}</ion-label>
           <ion-label class="text">{{ horariosAtendimento[i] }}</ion-label>

@@ -29,7 +29,7 @@
   color: #35221a;
   text-align: left;
   margin-left: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .text {
@@ -46,7 +46,7 @@
   width: 85%;
   height: 2px;
   border-radius: 8px;
-  margin-top: 50px;
+  margin-top: 25px;
   margin-bottom: 25px;
 }
 
@@ -119,13 +119,14 @@
 .horarios {
   display: flex;
   justify-content: center;
+  margin-left: 45px;
 }
 
 ion-list {
-  width: 90%;
-}
-
-ion-item {
+  width: 100%;
+  --ion-item-background:#ffeee1
+  display: flex;
+  justify-content: flex-end;
   --background: #ffeee1;
 }
 
@@ -162,8 +163,10 @@ ion-avatar {
 }
 
 .social-item {
-  display: flex;
+  display: block;
   align-items: center;
 }
 
-a {}
+a {
+  text-decoration: none;
+}
