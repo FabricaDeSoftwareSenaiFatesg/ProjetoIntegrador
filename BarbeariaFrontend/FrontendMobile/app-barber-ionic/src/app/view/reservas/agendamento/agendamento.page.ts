@@ -19,27 +19,29 @@ export class AgendamentoPage implements OnInit {
   dataSelecionada?: Date;
   filtroHorarios: FiltroHorarios = new FiltroHorarios();
   listaProfissionais: Pessoa[] = this.getListaProfissionais();
-
   servicos: Servico[] = this.getListaServicos();
-
-  /*servicos: Servico[] = [
-      { descricao: 'Apple', valor: 10,  tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Apricot', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Banana', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Blackberry', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Blueberry', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Cherry', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Cranberry', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Grape', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Grapefruit', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Guava', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-      { descricao: 'Jackfruit', valor: 10, tempo: 10, imagem: new Imagem(), ativo: true },
-  ];*/
-
   servicosFiltrados: Servico[] = [];
   servicosText: string = 'Serviços';
   profissionalText: string = 'Profissional';
   dataText?: string = 'Data';
+  products: {name: string}[] = [
+    {name: '11:00'},
+    {name: '11:01'},
+    {name: '11:02'},
+    {name: '11:03'},
+    {name: '11:04'},
+    {name: '11:05'},
+    {name: '11:06'},
+    {name: '11:07'},
+    {name: '11:08'}
+  ]
+  responsiveOptions: {breakpoint: string, numVisible: number, numScroll:number}[] = [
+    {
+      breakpoint: '1199px',
+      numVisible: 4,
+      numScroll: 4
+    },
+  ];
 
   ngOnInit() {
     this.servicosFiltrados = [...this.servicos];

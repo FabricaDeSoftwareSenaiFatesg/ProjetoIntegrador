@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { AgendamentoPageRoutingModule } from './agendamento-routing.module';
 
 import { AgendamentoPage } from './agendamento.page';
+import {CarouselModule} from "primeng/carousel";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AgendamentoPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        AgendamentoPageRoutingModule,
+        CarouselModule
+    ],
   declarations: [AgendamentoPage]
 })
 export class AgendamentoPageModule {}
