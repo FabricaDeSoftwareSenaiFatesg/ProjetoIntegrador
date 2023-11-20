@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
-
+import { MenuController, ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'login.page.html',

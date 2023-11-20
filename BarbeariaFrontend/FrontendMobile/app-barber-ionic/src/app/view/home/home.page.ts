@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MenuController, LoadingController } from '@ionic/angular';
+import { GoogleMap } from '@capacitor/google-maps';
 
 interface IconFlips {
   isCorteFlipped: boolean;
@@ -23,8 +24,11 @@ interface Profissional {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
+export class HomePage implements OnInit {
+  @ViewChild('map', { static: false })
+  mapRef!: ElementRef<HTMLElement>;
+  newMap!: GoogleMap;
 
-export class HomePage {
   selectedService: any;
 
   iconFlips: IconFlips = {
@@ -40,10 +44,6 @@ export class HomePage {
     { nome: 'Hidratação', valor: 'R$ 40,00' },
     { nome: 'Selagem', valor: 'R$ 50,00' },
   ];
-
-  flipBox(icon: keyof IconFlips) {
-    this.iconFlips[icon] = !this.iconFlips[icon];
-  }
 
   diasSemana: string[] = [
     'Domingo',
@@ -72,13 +72,53 @@ export class HomePage {
     { nome: '4', imagem: '/assets/images/avatar.png' },
   ];
 
-  constructor(private menuCtrl: MenuController) {}
+  constructor(
+    private menuCtrl: MenuController,
+    public loadingController: LoadingController
+  ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.presentLoading();
+
+    setTimeout(() => {
+      this.createMap();
+      this.dismissLoading();
+    }, 1000);
+  }
+
+  async createMap() {
+    this.newMap = await GoogleMap.create({
+      id: 'my-map',
+      element: this.mapRef.nativeElement,
+      apiKey: 'AIzaSyDrIrQf7mX8URp_eOcybLO_URWe9MyJ3JU',
+      config: {
+        center: {
+          lat: -16.69164276123047,
+          lng: -49.324623107910156,
+        },
+        zoom: 12,
+      },
+    });
+  }
+
+  flipBox(icon: keyof IconFlips) {
+    this.iconFlips[icon] = !this.iconFlips[icon];
+  }
 
   openEndMenu() {
     console.log('Botão clicado. Tentando abrir o menu.');
     this.menuCtrl.open('end');
   }
-  
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'loading',
+      message: 'Carregando Mapa...'
+    });
+    await loading.present();
+  }
+
+  async dismissLoading() {
+    await this.loadingController.dismiss();
+  }
 }
