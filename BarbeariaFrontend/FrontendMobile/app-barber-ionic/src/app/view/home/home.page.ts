@@ -113,7 +113,8 @@ export class HomePage implements OnInit {
   async presentLoading() {
     const loading = await this.loadingController.create({
       cssClass: 'loading',
-      message: 'Carregando Mapa...'
+      message: 'Carregando mapa...',
+      translucent: true
     });
     await loading.present();
   }
