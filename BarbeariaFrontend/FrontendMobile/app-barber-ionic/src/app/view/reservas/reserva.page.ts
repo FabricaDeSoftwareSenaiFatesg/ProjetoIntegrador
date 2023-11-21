@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-reserva',
@@ -7,10 +8,31 @@ import { Component } from '@angular/core';
 })
 export class ReservaPage {
 
-  constructor() {}
+  listaAgendamentos: any[] = [];
+
+  constructor(private navigation: NavController) {}
 
   ngOnInit() {
-    
+
   }
+
+  reservar() {
+
+  }
+
+  redirecionarAgendamento() {
+    this.navigation.navigateRoot('/tabs/reserva/agendamento');
+  }
+
+}
+
+class Reserva {
+
+  data: Date = new Date();
+  valor: number = 0;
+  servico: string = "";
+  horaInicio: string = "";
+  horaFim: string = "";
+  profissional: string = "";
 
 }

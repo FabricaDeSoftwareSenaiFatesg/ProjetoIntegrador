@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button slot="start" (click)="voltar()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+    <ion-title>agendamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+
+  <ion-button id="open-modalServicos" expand="block">{{ servicosText }}</ion-button>
+
+  <ion-modal #modalServicos trigger="open-modalServicos">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button slot="start" (click)="fecharModalServicos()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+          </ion-buttons>
+
+          <ion-title>Serviços</ion-title>
+        </ion-toolbar>
+
+        <ion-toolbar>
+          <ion-searchbar (ionInput)="pesquisarServico($event)"></ion-searchbar>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content color="light" class="ion-padding">
+        <ion-list id="modal-list" [inset]="true" *ngFor="let servico of servicosFiltrados">
+          <ion-item (click)="selecionarServico(servico)">
+            <ion-label>{{ getDescricaoServico(servico) }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-button id="open-modalProfissional" expand="block">{{ profissionalText }}</ion-button>
+
+  <ion-modal #modalProfissional trigger="open-modalProfissional" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
+    <ng-template>
+      <ion-content>
+
+        <ion-list *ngFor="let profissional of listaProfissionais">
+          <ion-item (click)="selecionarProfissional(profissional)">
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+            </ion-avatar>
+            <ion-label>{{ profissional.nome }}</ion-label>
+          </ion-item>
+        </ion-list>
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-button id="open-modalData" expand="block">{{ dataText }}</ion-button>
+
+  <ion-modal #modalData trigger="open-modalData" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
+    <ng-template>
+
+      <div class="ion-padding" slot="content">
+        <ion-datetime (ionChange)="selecionarData()" presentation="date" [(ngModel)]="dataSelecionada"></ion-datetime>
+      </div>
+
+    </ng-template>
+  </ion-modal>
+
+  <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+    <ng-template let-product pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+        <div>
+          <ion-button>{{ product.name }}</ion-button>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+
+</ion-content>
