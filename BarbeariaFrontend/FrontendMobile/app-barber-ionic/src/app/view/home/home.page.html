@@ -1,23 +1,118 @@
-<ion-menu side="end" contentId="main-content" swipe-gesture="false">
+<div class="fundo">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Configurações</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">This is the end menu content.</ion-content>
-</ion-menu>
-
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
+    <ion-toolbar class="menu">
       <ion-buttons slot="primary">
         <ion-button (click)="openEndMenu()">
-          <ion-icon name="menu"></ion-icon>
+          <ion-icon class="iconesMenu" size="large" name="menu"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title>Oliveira's</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">
-  </ion-content>
+
+  <ion-loading class="custom-loading"></ion-loading>
+
+  <section>
+    <h1 class="titulos">ENDEREÇO</h1>
+    <div class="endereco">
+      <capacitor-google-map #map></capacitor-google-map>
+    </div>
+  </section>
+
+
+  <div class="divisoria-marrom"></div> 
+  
+  <section>
+    <h1 class="titulos">SERVIÇOS</h1>
+    <div class="servicos">
+      <div class="linhaTopo">
+        <div class="card">
+          <div class="quadrado desvirado" [ngClass]="{ 'virado': iconFlips.isCorteFlipped }" (click)="flipBox('isCorteFlipped')">
+            <img *ngIf="!iconFlips.isCorteFlipped" style="width: 50%;" src="/assets/icon/Corte.svg">
+            <div *ngIf="iconFlips.isCorteFlipped" class="valores-container">
+              <p class="valores">{{ servicos[0].valor }}</p>
+            </div>
+          </div>
+          <p class="text">Corte</p>
+        </div>
+        <div class="card">
+          <div class="quadrado desvirado" [ngClass]="{ 'virado': iconFlips.isBarbaFlipped }" (click)="flipBox('isBarbaFlipped')">
+            <img *ngIf="!iconFlips.isBarbaFlipped" style="width: 60%;" src="/assets/icon/Barba.svg">
+            <div *ngIf="iconFlips.isBarbaFlipped" class="valores-container">
+              <p class="valores">{{ servicos[1].valor }}</p>
+            </div>
+          </div>
+          <p class="text">Barba</p>
+        </div>
+      </div>
+      <div class="linhaBaixo">
+        <div class="card">
+          <div class="quadrado desvirado" [ngClass]="{ 'virado': iconFlips.isHidratacaoFlipped }" (click)="flipBox('isHidratacaoFlipped')">
+            <img *ngIf="!iconFlips.isHidratacaoFlipped" style="width: 60%;" src="/assets/icon/Hidratacao.svg">
+            <div *ngIf="iconFlips.isHidratacaoFlipped" class="valores-container">
+              <p class="valores">{{ servicos[2].valor }}</p>
+            </div>
+          </div>
+          <p class="text">Hidratação</p>
+        </div>
+        <div class="card">
+          <div class="quadrado desvirado" [ngClass]="{ 'virado': iconFlips.isSelagemFlipped }" (click)="flipBox('isSelagemFlipped')">
+            <img *ngIf="!iconFlips.isSelagemFlipped" style="width: 50%;" src="/assets/icon/Selagem.svg">
+            <div *ngIf="iconFlips.isSelagemFlipped" class="valores-container">
+              <p class="valores">{{ servicos[3].valor }}</p>
+            </div>
+          </div>
+          <p class="text">Selagem</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="divisoria-marrom"></div>
+
+  <section>
+    <h1 class="titulos">HORÁRIOS</h1> 
+    <div class="horarios">
+      <ion-list lines="none" [inset]="false">
+        <ion-item *ngFor="let day of diasSemana; let i = index">
+          <ion-label class="text">{{ day }}</ion-label>
+          <ion-label class="text">{{ horariosAtendimento[i] }}</ion-label>
+        </ion-item>
+      </ion-list>   
+    </div>
+  </section>
+
+  <div class="divisoria-marrom"></div>
+
+  <section>
+    <h1 class="titulos">PROFISSIONAIS</h1>
+    <div class="profissionais">
+      <div class="slide" *ngFor="let profissional of profissionais">
+        <ion-avatar>
+          <img [src]="profissional.imagem" />
+        </ion-avatar>
+        <p class="text">{{ profissional.nome }}</p>
+      </div>
+    </div>
+  </section>
+  
+  <div class="divisoria-marrom"></div>
+
+  <section>
+    <h1 class="titulos">SOCIAL</h1> 
+    <div class="social-container">
+      <div class="social-item">
+        <a href="tel:+5562993955124" target="_blank">
+          <ion-icon class="iconesSocial" size="large" name="logo-whatsapp"></ion-icon>
+          <p class="text">Whatsapp</p>
+        </a>
+      </div>
+      
+      <div class="social-item"> 
+        <a href="https://www.instagram.com/oliveiras_studio/?igshid=MzRIODBiNWFIZA%3D%3D" target="_blank">
+          <ion-icon class="iconesSocial" size="large" name="logo-instagram"></ion-icon>
+          <p class="text">Instagram</p>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>
