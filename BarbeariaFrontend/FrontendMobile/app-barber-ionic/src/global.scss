@@ -28,3 +28,37 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;500;700&family=Poppins:ital,wght@0,300;0,400;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;500&family=Poppins:wght@300;400&display=swap');
+
+.fundo {
+    min-height: 95vh;
+    text-align: center;
+    background-color: #ffeee1;
+    overflow-y: auto;
+}
+
+.text {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 13px;
+    color: #35221a;
+    margin-top: 5px;
+}
+
+.titulos {
+    font-family: Khand;
+    font-weight: 700;
+    font-size: 18px;
+    color: #35221a;
+    text-align: left;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+.menu {
+    --background: #ffeee1;
+    --box-shadow: 0 0 0 0;
+}
+
+.iconesMenu {
+    color: #35221a;
+}
