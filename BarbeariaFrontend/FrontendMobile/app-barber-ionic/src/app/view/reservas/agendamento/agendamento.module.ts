@@ -8,6 +8,7 @@ import { AgendamentoPageRoutingModule } from './agendamento-routing.module';
 
 import { AgendamentoPage } from './agendamento.page';
 import {CarouselModule} from "primeng/carousel";
+import {ServicoService} from "../../../../arquitetura/services/servico.service";
 
 @NgModule({
     imports: [
@@ -17,6 +18,7 @@ import {CarouselModule} from "primeng/carousel";
         AgendamentoPageRoutingModule,
         CarouselModule
     ],
-  declarations: [AgendamentoPage]
+  declarations: [AgendamentoPage],
+  providers: [ServicoService]
 })
 export class AgendamentoPageModule {}

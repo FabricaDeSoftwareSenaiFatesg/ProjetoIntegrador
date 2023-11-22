@@ -1,100 +1,78 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {IonModal, NavController} from "@ionic/angular";
 import {Servico} from "../../../../arquitetura/modelo/servico.model";
 import {Pessoa} from "../../../../arquitetura/modelo/pessoa.model";
 import {FiltroHorarios} from "../../../../arquitetura/modelo/filtro-horarios.model";
+import {ServicoService} from "../../../../arquitetura/services/servico.service";
+import {PessoaService} from "../../../../arquitetura/services/pessoa.service";
+import {AgendamentoService} from "../../../../arquitetura/services/agendamento.service";
+import {ReservaModel} from "../../../../arquitetura/modelo/reserva.model";
+import {BaseComponent} from "../../../../arquitetura/component/base-component/base-component.component";
 
 @Component({
   selector: 'app-agendamento',
   templateUrl: './agendamento.page.html',
   styleUrls: ['./agendamento.page.scss'],
 })
-export class AgendamentoPage implements OnInit {
+export class AgendamentoPage extends BaseComponent<ReservaModel> implements OnInit {
   @ViewChild('modalProfissional', { static: true }) modalProfissional!: IonModal;
   @ViewChild('modalData', { static: true }) modalData!: IonModal;
   @ViewChild('modalServicos', { static: true }) modalServicos!: IonModal;
+  @ViewChild('modalResumo', { static: true }) modalResumo!: IonModal;
 
-  constructor(private navigation: NavController) { }
+  constructor(
+    private navigation: NavController,
+    private servicoService: ServicoService,
+    private pessoaService: PessoaService,
+    private agendamentoService: AgendamentoService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
+    super(agendamentoService, changeDetectorRef);
+  }
+
+  filtroHorarios: FiltroHorarios = new FiltroHorarios();
 
   dataSelecionada?: Date;
-  filtroHorarios: FiltroHorarios = new FiltroHorarios();
-  listaProfissionais: Pessoa[] = this.getListaProfissionais();
-  servicos: Servico[] = this.getListaServicos();
+  dataText?: string = 'Data';
+
+  profissionais: Pessoa[] = [];
+  profissionalText: string = 'Profissional';
+
+  servicos: Servico[] = [];
   servicosFiltrados: Servico[] = [];
   servicosText: string = 'Serviços';
-  profissionalText: string = 'Profissional';
-  dataText?: string = 'Data';
-  products: {name: string}[] = [
-    {name: '11:00'},
-    {name: '11:01'},
-    {name: '11:02'},
-    {name: '11:03'},
-    {name: '11:04'},
-    {name: '11:05'},
-    {name: '11:06'},
-    {name: '11:07'},
-    {name: '11:08'}
-  ]
-  responsiveOptions: {breakpoint: string, numVisible: number, numScroll:number}[] = [
-    {
-      breakpoint: '1199px',
-      numVisible: 4,
-      numScroll: 4
-    },
-  ];
 
-  ngOnInit() {
-    this.servicosFiltrados = [...this.servicos];
+  horarios: string[] = [];
+  reserva: ReservaModel = new ReservaModel();
+
+  override ngOnInit() {
+    // this.consultarUsuarioLogado();
+    this.inicializarServicos();
+    this.inicializarProfissionais();
   }
 
-  getListaProfissionais(): Pessoa[] {
-    let listaProfissionais:Pessoa[] = [];
-
-    let profissional = new Pessoa();
-    profissional.flagFuncionario = true;
-    profissional.nome = 'nome';
-
-    listaProfissionais.push(profissional);
-    listaProfissionais.push(profissional);
-    listaProfissionais.push(profissional);
-
-    return listaProfissionais;
+  consultarUsuarioLogado() {
+    this.service.getUsuarioLogado().subscribe(response => {
+      this.usuarioLogado = response;
+    });
   }
 
-  getListaServicos(): Servico[] {
-    let listaServicos: Servico[] = [];
-
-    for (let i = 0; i <= 10; i++) {
-      let servico = new Servico();
-      servico.descricao = 'serviço' + i;
-      servico.tempo = 10;
-      servico.valor = 10;
-      listaServicos.push(servico);
-
-    }
-
-    return listaServicos;
+  inicializarServicos() {
+    this.servicoService.listarDTO().subscribe(response => {
+      this.servicos = response;
+      this.servicosFiltrados = [...this.servicos];
+    });
   }
 
-  selecionarProfissional(profissional: Pessoa) {
-    this.profissionalText = profissional.nome;
-    this.filtroHorarios.profissional = profissional;
-    this.modalProfissional.dismiss();
-  }
-
-  selecionarData() {
-    this.dataText = this.dataSelecionada?.toString();
-    this.filtroHorarios.data = this.dataSelecionada;
-    this.modalData.dismiss();
+  inicializarProfissionais() {
+    this.pessoaService.listarProfissionais().subscribe(response => {
+      this.profissionais = response;
+    });
   }
 
   selecionarServico(servico: Servico) {
     this.servicosText = servico.descricao;
     this.filtroHorarios.servicos.push(servico);
-    this.modalServicos.dismiss();
-  }
-
-  fecharModalServicos() {
     this.modalServicos.dismiss();
   }
 
@@ -114,6 +92,96 @@ export class AgendamentoPage implements OnInit {
         return item.descricao.toLowerCase().includes(query.toLowerCase());
       });
     }
+  }
+
+  fecharModalServicos() {
+    this.modalServicos.dismiss();
+  }
+
+  selecionarProfissional(profissional: Pessoa) {
+    this.profissionalText = profissional.nome;
+    this.filtroHorarios.profissional = profissional;
+    this.modalProfissional.dismiss();
+  }
+
+  selecionarData() {
+    this.dataText = this.dataSelecionada?.toString();
+    this.filtroHorarios.data = this.dataSelecionada;
+    this.modalData.dismiss();
+
+    this.consultarHorarios();
+  }
+
+  consultarHorarios() {
+    this.agendamentoService.consultarHorarios(this.filtroHorarios).subscribe(response => {
+      this.horarios = response.entity;
+    });
+  }
+
+  abrirModalResumo(horario: string) {
+    this.modalResumo.present();
+    this.montarReserva(horario);
+  }
+
+  montarReserva(horarioSelecionado: string) {
+    this.reserva.cliente.id = 4;
+    this.reserva.funcionario = this.filtroHorarios.profissional!;
+    this.reserva.servicos = this.filtroHorarios.servicos!;
+
+    let dataInicial = this.getDataInicial(horarioSelecionado);
+    this.reserva.dataInicial = dataInicial
+    this.reserva.dataFim = this.getDataFim(dataInicial);
+
+    this.setTextsNaReserva();
+  }
+
+  setTextsNaReserva() {
+    let total = this.servicos[0].valor;
+    this.reserva.totalText = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+
+    let dataInicial =  this.reserva.dataInicial;
+    let dataFim = this.reserva.dataFim;
+
+    const formatador = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    const partesData = formatador.formatToParts(dataInicial);
+    const data = partesData.map(part => part.value).join('');
+
+    const horaInicial = dataInicial.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    const horaFinal = dataFim.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+    this.reserva.dataHoraText = data + " - " + horaInicial + " às " + horaFinal;
+  }
+
+  getDataInicial(horarioSelecionado: string) {
+    let dataInicial = new Date(this.filtroHorarios.data!);
+    let horaInicial = Number(horarioSelecionado.substring(0, 2));
+    let minutoInicial = Number(horarioSelecionado.substring(3, 5));
+    dataInicial.setHours(horaInicial, minutoInicial, 0, 0);
+    return dataInicial;
+  }
+
+  getDataFim(dataInicial: Date) {
+    let tempoTotalServicos = this.getTempoTotalServicos();
+    let qntHorariosNecessarios = Math.ceil(tempoTotalServicos/30);
+    let horasFinais = Math.floor(qntHorariosNecessarios * 30 / 60);
+    let minutosFinais = qntHorariosNecessarios * 30 % 60;
+    let dataFinal = new Date();
+    dataFinal.setHours(dataInicial.getHours() + horasFinais, dataInicial.getMinutes() + minutosFinais, 0, 0);
+    return dataFinal;
+  }
+
+  getTempoTotalServicos() {
+    let tempoTotalServicos = 0;
+    this.filtroHorarios.servicos.forEach((servico: { tempo: number; }) => {
+      tempoTotalServicos += servico.tempo;
+    });
+    return tempoTotalServicos;
+  }
+
+  confirmar() {
+    this.agendamentoService.salvarReserva(this.reserva).subscribe();
+    this.modalResumo.dismiss();
+    this.voltar();
   }
 
   voltar() {

@@ -41,7 +41,7 @@
     <ng-template>
       <ion-content>
 
-        <ion-list *ngFor="let profissional of listaProfissionais">
+        <ion-list *ngFor="let profissional of profissionais">
           <ion-item (click)="selecionarProfissional(profissional)">
             <ion-avatar slot="start">
               <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
@@ -66,14 +66,31 @@
     </ng-template>
   </ion-modal>
 
-  <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
-    <ng-template let-product pTemplate="item">
+  <p-carousel [value]="horarios" [numVisible]="4" [numScroll]="4" *ngIf="horarios?.length! > 0; else horariosEmpty">
+    <ng-template let-horario pTemplate="item">
       <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
         <div>
-          <ion-button>{{ product.name }}</ion-button>
+          <ion-button (click)="abrirModalResumo(horario)">{{ horario }}</ion-button>
         </div>
       </div>
     </ng-template>
   </p-carousel>
+
+  <ng-template #horariosEmpty>
+    <span *ngIf="dataSelecionada">Não possui horários disponíveis!</span>
+  </ng-template>
+
+  <ion-modal #modalResumo trigger="open-modalResumo" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
+    <ng-template>
+      <ion-content class="ion-padding">
+        Serviço: {{ reserva.servicos[0].descricao }}<br>
+        Barbeiro: {{ reserva.funcionario.nome }}<br>
+        Data e Hora: {{ reserva.dataHoraText }}<br>
+        Total: {{ reserva.totalText }}<br>
+
+        <ion-button class="ion-margin" shape="round" expand="full" (click)="confirmar()">Confirmar!</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 
 </ion-content>

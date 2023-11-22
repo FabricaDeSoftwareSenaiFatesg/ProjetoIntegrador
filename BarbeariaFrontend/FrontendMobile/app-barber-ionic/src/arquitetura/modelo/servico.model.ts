@@ -10,5 +10,4 @@ export class Servico extends Entidade {
   constructor() {
     super();
   }
-
 }

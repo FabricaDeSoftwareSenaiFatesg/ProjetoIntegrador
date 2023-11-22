@@ -43,11 +43,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         		.antMatchers(HttpMethod.POST, "/login**").permitAll()
         		.antMatchers(HttpMethod.POST, "/login/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/usuario/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/**").access("#oauth2.hasScope('read')")
-                .antMatchers(HttpMethod.POST, "/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.PATCH, "/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.PUT, "/**").access("#oauth2.hasScope('write')")
-                .antMatchers(HttpMethod.DELETE, "/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.GET, "/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/**").permitAll()
+                .antMatchers(HttpMethod.PATCH, "/**").permitAll()
+                .antMatchers(HttpMethod.PUT, "/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 ;
     }
