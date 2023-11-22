@@ -1,26 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Agendamentos
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="fundo">
+    <div class="cards-agendamentos" *ngIf="listaAgendamentos.length > 0">
+      <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+        <ion-fab-button (click)="reservar()">
+          <ion-icon name="calendar"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
 
-<ion-content [fullscreen]="true">
-
-  <div class="cards-agendamentos" *ngIf="listaAgendamentos.length > 0">
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-      <ion-fab-button (click)="reservar()">
-        <ion-icon name="calendar"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
-
-  <div class="sem-agendamentos" *ngIf="listaAgendamentos.length == 0">
-    <img src="assets\imagens\calendar-svgrepo-com.svg" alt="teste" class="imagem" height="200" width="200">
-    <label for="info" style="margin: 10px;">Nenhum agendamento</label>
-    <label for="texto" style="margin: 10px;">Você não possui agendamentos. Que tal agendar um horário?</label>
-    <ion-button (click)="redirecionarAgendamento()" style="margin: 10px;">Agendar</ion-button>
-  </div>
-
-</ion-content>
+    <div class="sem-agendamentos" *ngIf="listaAgendamentos.length == 0">
+      <img src="assets\images\calendar-svgrepo-com.svg" alt="teste" class="imagem" height="200" width="200">
+      <label class= "titulos" for="info" style="margin: 10px;">Nenhum agendamento</label>
+      <label class= "text" for="texto" style="margin-top: 30px; margin-bottom: 40px;">Você ainda não possui agendamentos.</label>
+      <ion-button size="small" class="botao1" (click)="redirecionarAgendamento()">AGENDAR</ion-button>
+    </div>
+</div>
