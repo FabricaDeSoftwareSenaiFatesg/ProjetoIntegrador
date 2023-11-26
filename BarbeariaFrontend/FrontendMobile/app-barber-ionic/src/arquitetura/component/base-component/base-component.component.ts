@@ -16,7 +16,7 @@ export class BaseComponent<T extends Entidade>  implements OnInit {
   usuarioLogado: UsuarioModel = new UsuarioModel();
 
   ngOnInit() {
-    // this.getUsuarioLogado();
+    this.getUsuarioLogado();
   }
 
   getUsuarioLogado() {
