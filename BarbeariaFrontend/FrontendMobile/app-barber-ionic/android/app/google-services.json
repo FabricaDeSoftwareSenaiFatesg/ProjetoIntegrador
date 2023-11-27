@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "877300590130",
+    "project_id": "barber-helper-9fd41",
+    "storage_bucket": "barber-helper-9fd41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877300590130:android:a57a470a738f21b2277e2b",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxu_x_uEPFQx0LCubLfKafrSeEWgOye34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
