@@ -191,7 +191,7 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
 
     public PerfilDTO consultarDadosParaPerfil(Long idPessoa) {
 
-        List<Reserva> listaReservas = this.consultarReservasPorCliente(idPessoa);
+        List<Reserva> listaReservas = this.consultarReservasPorPessoa(idPessoa);
 
         List<Pedido> listaPedidos = this.consultarPedidosPorCliente(idPessoa);
 
@@ -221,7 +221,7 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
 
     }
 
-    public List<Reserva> consultarReservasPorCliente(Long idPessoa) {
+    public List<Reserva> consultarReservasPorPessoa(Long idPessoa) {
         final CriteriaBuilder builder = em.getCriteriaBuilder();
         final CriteriaQuery<Tuple> query = builder.createTupleQuery();
         final Root<Reserva> root = query.from(Reserva.class);
@@ -261,4 +261,13 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
         return this.executeQueryAndTransforResult(query, Pedido.class);
     }
 
+    public List<Reserva> consultarReservasPorCliente(Long idPessoa) {
+        return dao.getReservasByClienteAndDataInicialGreaterThanEqualAndStatusReservaEquals(new Pessoa(idPessoa), new Date(), StatusReservaEnum.RESERVADO);
+    }
+
+    public void cancelarReserva(Long id) {
+        Reserva reserva = dao.getById(id);
+        reserva.setStatusReserva(StatusReservaEnum.CANCELADO);
+        dao.save(reserva);
+    }
 }

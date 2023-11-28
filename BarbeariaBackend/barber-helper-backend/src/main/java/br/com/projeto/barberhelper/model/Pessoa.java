@@ -23,4 +23,10 @@ public class Pessoa extends EntidadeGenerica {
 
     private String descricaoFuncionario;
 
+    public Pessoa(Long id) {
+
+        this.setId(id);
+
+    }
+
 }

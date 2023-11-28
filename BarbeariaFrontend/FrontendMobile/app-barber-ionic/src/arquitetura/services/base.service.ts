@@ -16,6 +16,10 @@ export class BaseService <E extends Entidade> {
     return this.http.get<E>(`${this.url}/${this.path}`);
   }
 
+  consultar(id: number): Observable<E> {
+    return this.http.get<E>(`${this.url}/${this.path}/${id}`);
+  }
+
   getUsuarioLogado(): Observable<UsuarioModel>{
     return this.http.get<UsuarioModel>(`${this.url}/usuario/get-usuario-logado`);
   }

@@ -18,6 +18,7 @@ public class ReservaMapper {
         reservaListagemDTO.setInicio(DateUtil.getStringHorario(DateUtil.getCalendarDate(reserva.getDataInicial())));
         reservaListagemDTO.setFim(DateUtil.getStringHorario(DateUtil.getCalendarDate(reserva.getDataFim())));
         reservaListagemDTO.setStatus(reserva.getStatusReserva().toString());
+        reservaListagemDTO.setServicoNome(reserva.getServicos().get(0).getDescricao());
         return reservaListagemDTO;
     }
 
