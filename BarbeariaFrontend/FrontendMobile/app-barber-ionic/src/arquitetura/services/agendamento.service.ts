@@ -21,4 +21,12 @@ export class AgendamentoService extends BaseService<ReservaModel>{
   salvarReserva(reserva: ReservaModel) {
     return this.http.post<ReservaModel>(`${this.url}/${this.path}/salvarReserva`, reserva);
   }
+
+  listarReservasPorCliente(idCliente: number): Observable<any> {
+    return this.http.get<any>(`${this.url}/${this.path}/listarReservasPorCliente/${idCliente}`);
+  }
+
+  cancelarReserva(id: number) {
+    return this.http.put(`${this.url}/${this.path}/cancelarReserva/${id}`, null);
+  }
 }

@@ -12,6 +12,8 @@ public class ReservaListagemDTO extends DTO {
 
     private String funcionarioNome;
 
+    private String servicoNome;
+
     private String data;
 
     private String inicio;
