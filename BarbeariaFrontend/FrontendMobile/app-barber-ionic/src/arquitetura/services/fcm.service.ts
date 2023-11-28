@@ -56,7 +56,7 @@ export class FcmService {
     PushNotifications.addListener(
       'registration',
       async(token: Token) => {
-        console.log('My token: ', token);
+        console.log('My token: ', token.value);
         const fcm_token = (token?.value);
         let go = 1;
         const saved_token = JSON.parse((await this.storage.getStorage(FCM_TOKEN)).value);
