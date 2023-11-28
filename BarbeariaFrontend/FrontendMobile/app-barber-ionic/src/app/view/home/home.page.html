@@ -14,13 +14,13 @@
   <section>
     <h1 class="titulos">ENDEREÇO</h1>
     <div class="endereco">
-      <capacitor-google-map #map></capacitor-google-map>
+      <!-- <capacitor-google-map #map></capacitor-google-map> -->
     </div>
   </section>
 
 
-  <div class="divisoria-marrom"></div> 
-  
+  <div class="divisoria-marrom"></div>
+
   <section>
     <h1 class="titulos">SERVIÇOS</h1>
     <div class="servicos">
@@ -66,18 +66,18 @@
       </div>
     </div>
   </section>
-  
+
   <div class="divisoria-marrom"></div>
 
   <section>
-    <h1 class="titulos">HORÁRIOS</h1> 
+    <h1 class="titulos">HORÁRIOS</h1>
     <div class="horarios">
       <ion-list lines="none" [inset]="false">
         <ion-item *ngFor="let day of diasSemana; let i = index">
           <ion-label class="text">{{ day }}</ion-label>
           <ion-label class="text">{{ horariosAtendimento[i] }}</ion-label>
         </ion-item>
-      </ion-list>   
+      </ion-list>
     </div>
   </section>
 
@@ -94,11 +94,11 @@
       </div>
     </div>
   </section>
-  
+
   <div class="divisoria-marrom"></div>
 
   <section>
-    <h1 class="titulos">SOCIAL</h1> 
+    <h1 class="titulos">SOCIAL</h1>
     <div class="social-container">
       <div class="social-item">
         <a href="tel:+5562993955124" target="_blank">
@@ -106,8 +106,8 @@
           <p class="text">Whatsapp</p>
         </a>
       </div>
-      
-      <div class="social-item"> 
+
+      <div class="social-item">
         <a href="https://www.instagram.com/oliveiras_studio/?igshid=MzRIODBiNWFIZA%3D%3D" target="_blank">
           <ion-icon class="iconesSocial" size="large" name="logo-instagram"></ion-icon>
           <p class="text">Instagram</p>

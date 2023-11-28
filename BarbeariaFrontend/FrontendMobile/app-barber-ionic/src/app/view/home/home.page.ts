@@ -81,12 +81,12 @@ export class HomePage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.presentLoading();
+    // await this.presentLoading();
 
-    setTimeout(() => {
-      this.createMap();
-      this.dismissLoading();
-    }, 1000);
+    // setTimeout(() => {
+    //   this.createMap();
+    //   this.dismissLoading();
+    // }, 1000);
   }
 
   async createMap() {
