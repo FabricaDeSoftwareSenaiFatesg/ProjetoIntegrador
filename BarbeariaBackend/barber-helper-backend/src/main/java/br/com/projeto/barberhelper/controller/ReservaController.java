@@ -1,14 +1,26 @@
 package br.com.projeto.barberhelper.controller;
 
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto.barberhelper.generic.ManutencaoController;
 import br.com.projeto.barberhelper.generic.Service;
-import br.com.projeto.barberhelper.model.HorariosDisponiveis;
-import br.com.projeto.barberhelper.model.dto.FidelidadeDTO;
 import br.com.projeto.barberhelper.model.Reserva;
+import br.com.projeto.barberhelper.model.dto.FidelidadeDTO;
 import br.com.projeto.barberhelper.model.dto.PerfilDTO;
 import br.com.projeto.barberhelper.model.dto.PesquisaHorarios;
 import br.com.projeto.barberhelper.model.dto.listagem.ReservaListagemDTO;
@@ -16,19 +28,6 @@ import br.com.projeto.barberhelper.model.mapper.ReservaMapper;
 import br.com.projeto.barberhelper.model.mapper.ServicoMapper;
 import br.com.projeto.barberhelper.service.ReservaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 @RequiredArgsConstructor
 @RestController
@@ -98,5 +97,20 @@ public class ReservaController extends ManutencaoController<Reserva> {
 
         return service.consultarDadosParaPerfil(id);
 
+    }
+
+    @GetMapping(value = "/listarReservasPorCliente/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ReservaListagemDTO> consultarReservasPorCliente(@PathVariable Long id) {
+        List<Reserva> reservas = service.consultarReservasPorCliente(id);
+        return ResponseEntity.ok().body(ReservaMapper.toListReservaListagemDTO(reservas)).getBody();
+    }
+
+    @PutMapping(value = "/cancelarReserva/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void cancelarReserva(@PathVariable Long id) {
+        service.cancelarReserva(id);
     }
 }

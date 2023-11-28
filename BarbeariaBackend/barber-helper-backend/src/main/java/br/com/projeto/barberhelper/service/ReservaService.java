@@ -3,11 +3,14 @@ package br.com.projeto.barberhelper.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 import br.com.projeto.barberhelper.generic.Service;
 import br.com.projeto.barberhelper.model.Servico;
 import br.com.projeto.barberhelper.model.dto.FidelidadeDTO;
 import br.com.projeto.barberhelper.model.Reserva;
 import br.com.projeto.barberhelper.model.dto.PerfilDTO;
+import br.com.projeto.barberhelper.model.dto.listagem.ReservaListagemDTO;
 
 public interface ReservaService extends Service<Long, Reserva> {
 
@@ -24,4 +27,8 @@ public interface ReservaService extends Service<Long, Reserva> {
     public List<Servico> consultarServicosDaReserva(Long idReserva);
 
     PerfilDTO consultarDadosParaPerfil(Long idPessoa);
+
+    List<Reserva> consultarReservasPorCliente(Long id);
+
+    void cancelarReserva(Long id);
 }

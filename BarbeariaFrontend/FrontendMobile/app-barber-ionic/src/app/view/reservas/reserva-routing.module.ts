@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ReservaPage} from "./reserva.page";
-import {TabsPage} from "../tabs/tabs.page";
 
 const routes: Routes = [
   {
@@ -11,6 +10,10 @@ const routes: Routes = [
   {
     path: 'agendamento',
     loadChildren: () => import('./agendamento/agendamento.module').then( m => m.AgendamentoPageModule)
+  },
+  {
+    path: 'consultar-reserva/:id',
+    loadChildren: () => import('./consultar-reserva/consultar-reserva.module').then( m => m.ConsultarReservaPageModule)
   }
 ];
 

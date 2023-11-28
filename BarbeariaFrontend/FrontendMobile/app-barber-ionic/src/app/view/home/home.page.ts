@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MenuController, LoadingController } from '@ionic/angular';
+import {MenuController, LoadingController, NavController} from '@ionic/angular';
 import { GoogleMap } from '@capacitor/google-maps';
+import {UsuarioService} from "../../../arquitetura/services/usuario.service";
 
 interface IconFlips {
   isCorteFlipped: boolean;
@@ -74,7 +75,9 @@ export class HomePage implements OnInit {
 
   constructor(
     private menuCtrl: MenuController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private usuarioService: UsuarioService,
+    private navigation: NavController
   ) {}
 
   async ngOnInit() {
@@ -107,6 +110,12 @@ export class HomePage implements OnInit {
 
   openEndMenu() {
     console.log('Botão clicado. Tentando abrir o menu.');
+    this.usuarioService.logout().subscribe(() => {
+      if (localStorage.getItem("ads_access_token") !== null) {
+        localStorage.removeItem("ads_access_token");
+      }
+      this.navigation.navigateRoot("login");
+    });
     this.menuCtrl.open('end');
   }
 

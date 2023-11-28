@@ -124,7 +124,7 @@ export class AgendamentoPage extends BaseComponent<ReservaModel> implements OnIn
   }
 
   montarReserva(horarioSelecionado: string) {
-    this.reserva.cliente.id = 4;
+    this.reserva.cliente = this.usuarioLogado.pessoa
     this.reserva.funcionario = this.filtroHorarios.profissional!;
     this.reserva.servicos = this.filtroHorarios.servicos!;
 

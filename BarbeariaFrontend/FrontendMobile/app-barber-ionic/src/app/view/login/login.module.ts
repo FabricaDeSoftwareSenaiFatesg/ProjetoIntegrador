@@ -5,13 +5,15 @@ import { LoginPage } from './login.page';
 
 import { LoginPageRoutingModule } from './login-routing.module';
 import { CarouselModule } from 'primeng/carousel';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     LoginPageRoutingModule,
-    CarouselModule
+    CarouselModule,
+    FormsModule
   ],
   declarations: [LoginPage]
 })

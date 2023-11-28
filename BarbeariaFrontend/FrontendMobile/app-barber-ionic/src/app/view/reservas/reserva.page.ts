@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController} from "@ionic/angular";
+import {AgendamentoService} from "../../../arquitetura/services/agendamento.service";
 
 @Component({
   selector: 'app-reserva',
@@ -8,31 +9,28 @@ import {NavController} from "@ionic/angular";
 })
 export class ReservaPage {
 
-  listaAgendamentos: any[] = [];
+  agendamentos!: any[];
 
-  constructor(private navigation: NavController) {}
+  constructor(
+    private navigation: NavController,
+    private agendamentoService: AgendamentoService
+  ) {}
 
-  ngOnInit() {
-
-  }
-
-  reservar() {
-
+  async ngOnInit() {
+    await this.consultarReservasPorCliente();
   }
 
   redirecionarAgendamento() {
     this.navigation.navigateRoot('/tabs/reserva/agendamento');
   }
 
-}
+  consultarReservasPorCliente() {
+    this.agendamentoService.listarReservasPorCliente(4).subscribe(response => {
+      this.agendamentos = response;
+    });
+  }
 
-class Reserva {
-
-  data: Date = new Date();
-  valor: number = 0;
-  servico: string = "";
-  horaInicio: string = "";
-  horaFim: string = "";
-  profissional: string = "";
-
+  consultarReserva(id: number) {
+    this.navigation.navigateRoot('/tabs/reserva/consultar-reserva/' + id)
+  }
 }
