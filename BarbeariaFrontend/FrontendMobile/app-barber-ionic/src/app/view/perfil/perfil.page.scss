@@ -1,14 +1,16 @@
+// /=====================================PROPRIEDADES MAGNO======================================/
+
 .imagem {
-    border-style: solid;
-    border-width: 0px;
-    border-radius: 150px;
-    width: 280px;
-    height: 280px;
+  border-style: solid;
+  border-width: 0px;
+  border-radius: 150px;
+  width: 280px;
+  height: 280px;
 }
 
 .container-imagem {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .unread-indicator {
@@ -51,7 +53,88 @@ ion-label ion-note {
   font-size: 0.9rem;
 }
 
+// /=====================================SEÇÃO PRINCIPAL======================================/
+
+.fundoPerfil {
+  min-height: 100vh;
+  text-align: center;
+  background-color: #ffeee1;
+  overflow-y: auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.texto {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 13px;
+  color: #ffffff;
+  margin-top: 7px;
+}
+
+.texto2 {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 13px;
+  color: #35221a;
+  margin-top: 7px;
+}
+
 .imagem {
   width: 90%;
   height: 90%;
+}
+
+.icones {
+  color: #ad774c;
+}
+
+// /=====================================SEÇÃO MODAL EXPANSIVO======================================/
+
+.ion-color-primary {
+  --ion-color-primary: #ad774c;
+}
+
+:host .calendar-days-of-week {
+  --ion-color-step-300: #ad774c;
+}
+
+.ion-padding {
+  background-color: #ffeee1;
+}
+
+ion-accordion-group {
+  flex: 1;
+  min-width: 0;
+  --ion-color-light: #35221a;
+  --ion-color-light-shade: #ad774c;
+  --ion-color-light-contrast: #ad774c;
+}
+
+// /=====================================PROPRIEDADES IMAGEM PERFIL======================================/
+
+.circulo-imagem-perfil {
+  height: 200px;
+  width: 200px;
+  background-color: #35221a;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo-imagem-perfil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+}
+
+.imagem-perfil {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
 }

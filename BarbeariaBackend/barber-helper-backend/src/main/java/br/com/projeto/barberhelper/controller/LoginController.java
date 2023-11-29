@@ -1,5 +1,7 @@
 package br.com.projeto.barberhelper.controller;
 
+import javax.annotation.PostConstruct;
+
 import br.com.projeto.barberhelper.auth.User;
 import br.com.projeto.barberhelper.auth.UtilManager;
 import br.com.projeto.barberhelper.repository.LoginDAO;

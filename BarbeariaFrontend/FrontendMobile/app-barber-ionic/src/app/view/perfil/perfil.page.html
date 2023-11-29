@@ -1,30 +1,44 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Perfil</ion-title>
+  <ion-toolbar class="menu">
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon class="iconesMenu" size="large" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<div class="fundoPerfil">
+
+  <div class="campo-imagem-perfil">
+    <div *ngIf="!selectedImage" class="circulo-imagem-perfil" (click)="getPicture()">
+      <ion-icon name="image" style="width: 60px; height: 60px;"></ion-icon>
+    </div>
+    <div *ngIf="selectedImage" (click)="getPicture()">
+      <img [src]="selectedImage?.webPath" width="200px" class="imagem-perfil"/>
+    </div>
+  </div>
 
   <ion-accordion-group expand="inset">
     <ion-accordion value="first">
       <ion-item slot="header" color="light">
-        <ion-icon slot="start" name="person" size="small"></ion-icon>
-        <ion-label>Meus Dados</ion-label>
+        <ion-icon class= "icones" slot="start" name="person" size="small"></ion-icon>
+        <ion-label class="texto">Meus Dados</ion-label>
       </ion-item>
+
       <div class="ion-padding" slot="content">
-        <ion-icon name="create" size="small" (click)="editar()"></ion-icon>
-        <ion-input label="Nome:" placeholder="Nome" [(ngModel)]="pessoa.nome" [disabled]="visualizar"></ion-input>
-        <ion-input label="Telefone:" type="number" placeholder="(00) 00000-0000" [(ngModel)]="pessoa.telefone" [disabled]="visualizar"></ion-input>
-        <ion-input label="Email:" type="email" placeholder="email@gmail.com" [(ngModel)]="pessoa.email" [disabled]="visualizar"></ion-input>
+        <ion-icon class= "icones" name="create" size="small" (click)="editar()"></ion-icon>
+        <ion-input class="texto2" label="Nome:" placeholder="Nome" [(ngModel)]="pessoa.nome" [disabled]="visualizar"></ion-input>
+        <ion-input class="texto2" label="Telefone:" type="number" placeholder="(00) 00000-0000" [(ngModel)]="pessoa.telefone" [disabled]="visualizar"></ion-input>
+        <ion-input class="texto2" label="Email:" type="email" placeholder="email@gmail.com" [(ngModel)]="pessoa.email" [disabled]="visualizar"></ion-input>
         <ion-button color="light" fill="solid" expand="block" (click)="salvar()" *ngIf="!visualizar">Salvar</ion-button>
       </div>
     </ion-accordion>
 
     <ion-accordion value="second" *ngIf="!pessoa.flagFuncionario">
       <ion-item slot="header" color="light">
-        <ion-icon slot="start" name="pricetags" size="small"></ion-icon>
-        <ion-label>Fidelidade</ion-label>
+        <ion-icon class= "icones" slot="start" name="pricetags" size="small"></ion-icon>
+        <ion-label class="texto">Fidelidade</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
         <ion-label *ngIf="reservasPerfil.length === 0">Você não possui serviços no histórico para o pacote de fidelidade!</ion-label>
@@ -45,8 +59,8 @@
 
     <ion-accordion value="third">
       <ion-item slot="header" color="light">
-        <ion-icon slot="start" name="calendar" size="small"></ion-icon>
-        <ion-label>Histórico</ion-label>
+        <ion-icon class= "icones" slot="start" name="calendar" size="small"></ion-icon>
+        <ion-label class="texto">Histórico</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
 
@@ -65,7 +79,5 @@
         </ion-list>
       </div>
     </ion-accordion>
-
   </ion-accordion-group>
-
-</ion-content>
+</div>

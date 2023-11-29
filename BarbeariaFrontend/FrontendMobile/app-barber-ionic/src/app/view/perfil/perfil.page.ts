@@ -4,6 +4,8 @@ import {Pessoa} from "../../../arquitetura/modelo/pessoa.model";
 import {ReservaPerfil} from "../../../arquitetura/modelo/reserva-perfil";
 import {StatusReservaEnum} from "../../../arquitetura/modelo/enum/status-reserva.enum";
 import {Servico} from "../../../arquitetura/modelo/servico.model";
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
 
 @Component({
   selector: 'app-perfil',
@@ -24,6 +26,7 @@ export class PerfilPage {
   reservasPerfil: ReservaPerfil[] = [];
   historico: ReservaPerfil[] = [];
   dataSelecionada = new Date;
+  selectedImage: any;
 
   ngOnInit() {
     this.pessoa.nome = 'Nome da Pessoa';
@@ -81,6 +84,25 @@ export class PerfilPage {
     console.log(dataSelecionada);
     console.log('chamei a funcao de consultar historico');
     this.historico = this.getListaReservas();
+  }
+
+  async getPicture() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      source: CameraSource.Prompt,
+      width: 600,
+      resultType: this.checkPlatformForWeb() ? CameraResultType.DataUrl : CameraResultType.Uri
+    });
+    console.log('image: ', image);
+    this.selectedImage = image;
+    if(this.checkPlatformForWeb()) this.selectedImage.webPath = image.dataUrl;
+
+    console.log(this.selectedImage);
+  }
+
+  checkPlatformForWeb() {
+    if(Capacitor.getPlatform() == 'web' || Capacitor.getPlatform() == 'ios') return true;
+    return false;
   }
 
 }
