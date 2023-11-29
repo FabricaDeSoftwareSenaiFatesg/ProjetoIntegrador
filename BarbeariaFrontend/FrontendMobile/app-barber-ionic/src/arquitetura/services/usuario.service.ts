@@ -29,4 +29,7 @@ export class UsuarioService extends BaseService<UsuarioModel>{
     return this.http.get<any>(`${this.url}/usuario/logout`)
   }
 
+  getUsuarioLogado(): Observable<UsuarioModel>{
+    return this.http.get<UsuarioModel>(`${this.url}/usuario/get-usuario-logado`);
+  }
 }
