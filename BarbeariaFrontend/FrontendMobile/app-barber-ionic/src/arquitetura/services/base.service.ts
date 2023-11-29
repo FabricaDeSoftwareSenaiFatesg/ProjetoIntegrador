@@ -1,7 +1,6 @@
 import {Entidade} from "../modelo/entidade.model";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {UsuarioModel} from "../modelo/usuario.model";
 
 export class BaseService <E extends Entidade> {
 
@@ -18,9 +17,5 @@ export class BaseService <E extends Entidade> {
 
   consultar(id: number): Observable<E> {
     return this.http.get<E>(`${this.url}/${this.path}/${id}`);
-  }
-
-  getUsuarioLogado(): Observable<UsuarioModel>{
-    return this.http.get<UsuarioModel>(`${this.url}/usuario/get-usuario-logado`);
   }
 }

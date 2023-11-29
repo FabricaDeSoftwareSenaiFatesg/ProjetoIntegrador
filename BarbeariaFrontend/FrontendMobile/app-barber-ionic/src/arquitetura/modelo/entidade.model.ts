@@ -1,6 +1,6 @@
 export class Entidade {
 
-  id?: number;
+  id!: number;
   ativo: boolean = true;
   dataCadastro?: Date;
 

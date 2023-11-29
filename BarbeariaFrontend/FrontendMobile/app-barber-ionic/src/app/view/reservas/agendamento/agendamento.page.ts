@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonModal, NavController} from "@ionic/angular";
 import {Servico} from "../../../../arquitetura/modelo/servico.model";
 import {Pessoa} from "../../../../arquitetura/modelo/pessoa.model";
@@ -7,14 +7,15 @@ import {ServicoService} from "../../../../arquitetura/services/servico.service";
 import {PessoaService} from "../../../../arquitetura/services/pessoa.service";
 import {AgendamentoService} from "../../../../arquitetura/services/agendamento.service";
 import {ReservaModel} from "../../../../arquitetura/modelo/reserva.model";
-import {BaseComponent} from "../../../../arquitetura/component/base-component/base-component.component";
+import {UsuarioModel} from "../../../../arquitetura/modelo/usuario.model";
+import {UsuarioService} from "../../../../arquitetura/services/usuario.service";
 
 @Component({
   selector: 'app-agendamento',
   templateUrl: './agendamento.page.html',
   styleUrls: ['./agendamento.page.scss'],
 })
-export class AgendamentoPage extends BaseComponent<ReservaModel> implements OnInit {
+export class AgendamentoPage implements OnInit {
   @ViewChild('modalProfissional', { static: true }) modalProfissional!: IonModal;
   @ViewChild('modalData', { static: true }) modalData!: IonModal;
   @ViewChild('modalServicos', { static: true }) modalServicos!: IonModal;
@@ -25,11 +26,10 @@ export class AgendamentoPage extends BaseComponent<ReservaModel> implements OnIn
     private servicoService: ServicoService,
     private pessoaService: PessoaService,
     private agendamentoService: AgendamentoService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {
-    super(agendamentoService, changeDetectorRef);
-  }
+    private usuarioService: UsuarioService
+  ) { }
 
+  usuarioLogado!: UsuarioModel;
   filtroHorarios: FiltroHorarios = new FiltroHorarios();
 
   dataSelecionada?: Date;
@@ -45,14 +45,14 @@ export class AgendamentoPage extends BaseComponent<ReservaModel> implements OnIn
   horarios: string[] = [];
   reserva: ReservaModel = new ReservaModel();
 
-  override ngOnInit() {
-    // this.consultarUsuarioLogado();
+  ngOnInit() {
+    this.consultarUsuarioLogado();
     this.inicializarServicos();
     this.inicializarProfissionais();
   }
 
   consultarUsuarioLogado() {
-    this.service.getUsuarioLogado().subscribe(response => {
+    this.usuarioService.getUsuarioLogado().subscribe(response => {
       this.usuarioLogado = response;
     });
   }
