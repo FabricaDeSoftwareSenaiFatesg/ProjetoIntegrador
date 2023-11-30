@@ -25,6 +25,11 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;500;700&family=Poppins:ital,wght@0,300;0,400;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;500&family=Poppins:wght@300;400&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;500;700&family=Poppins:ital,wght@0,300;0,400;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;500&family=Poppins:wght@300;400&display=swap');
@@ -61,4 +66,233 @@
 
 .iconesMenu {
     color: #35221a;
+}
+
+html,
+body {
+    height: 100%;
+    background-color: #F9F5F2;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.label-input {
+    margin-bottom: 5px;
+}
+
+.switch-input {
+    max-width: 110px;
+}
+
+.btn-salvar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    font-family: 'Khand', sans-serif;
+}
+
+.input-personalizado {
+    width: 100%;
+}
+
+.input-personalizado .p-multiselect {
+    width: 100%;
+}
+
+.input-personalizado .p-calendar{
+    width: 100%;
+}
+
+.input-personalizado .p-dropdown{
+    width: 100%;
+}
+
+input {
+    height: 40px;
+    width: 100%;
+}
+
+.p-inputnumber {
+    width: 100%;
+}
+
+.btn-confimar {
+    display: inline-block;
+    position: relative;
+    color: #f9f5f2;
+    background: #c07c5a;
+    font-family: 'Khand', sans-serif;
+    font-size: 23px;
+    font-weight: 500;
+    text-align: center;
+    border: 2px solid #c07c5a;
+    border-radius: 8px;
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.5s;
+    width: 9.5rem;
+    height: 2.5rem;
+}
+.btn-confimar:before {
+    content: "";
+    position: absolute;
+    background: #f9f5f2;
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+    z-index: -1;
+}
+.btn-confimar:hover {
+    color: #c07c5a;
+}
+.btn-confimar:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.7s;
+}
+.btn-confimar:hover:before {
+    top: -30px;
+    left: -30px;
+}
+.btn-confimar:active:before {
+    background: #f9f5f2;
+    transition: 0s;
+}
+
+.div-inputs {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.div-novo-cadastro {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-novo-cadastro {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tela-listagem {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.div-voltar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-voltar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cadastro {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.form-cadastro {
+}
+
+.pi:not(.pi-th-large, .pi-bars, .pi-plus, .pi-minus, .pi-calendar) {
+    cursor: pointer;
+    margin: 3px;
+    color: #c07c5a;
+}
+
+.popins-font-300 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+.popins-font-500 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.popins-font-700 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.khand-font-300 {
+    font-family: 'Khand', sans-serif;
+    font-weight: 300;
+}
+
+.khand-font-500 {
+    font-family: 'Khand', sans-serif;
+    font-weight: 500;
+}
+
+.khand-font-700 {
+    font-family: 'Khand', sans-serif;
+    font-weight: 700;
+}
+
+.p-messages {
+    margin-left: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+.p-messages .pi-times {
+    color: black;
+    margin: 10px;
+}
+
+.btn-editar {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+    color: #f9f5f2;
+    background: #202020;
+    font-family: 'Khand', sans-serif;
+    font-size: 23px;
+    font-weight: 500;
+    text-align: center;
+    border: 2px solid #202020;
+    border-radius: 8px;
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.5s;
+    width: 9.5rem;
+    height: 2.5rem;
+}
+.btn-editar:before {
+    content: "";
+    position: absolute;
+    background: white;
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+    z-index: -1;
+}
+.btn-editar:hover {
+    color: #202020;
+}
+.btn-editar:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.7s;
+}
+.btn-editar:hover:before {
+    top: -30px;
+    left: -30px;
+}
+.btn-editar:active:before {
+    background: #f9f5f2;
+    transition: 0s;
 }
