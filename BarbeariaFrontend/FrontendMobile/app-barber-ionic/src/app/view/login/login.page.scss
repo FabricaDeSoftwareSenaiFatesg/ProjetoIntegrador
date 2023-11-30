@@ -96,3 +96,28 @@
   color: #35221a;
   margin-top: 5px;
 }
+
+/*=====================================MODAIS======================================*/
+
+.ion-padding {
+  --ion-background-color: #35221a;
+  --padding-top: 40px;
+}
+
+ion-modal {
+  --ion-backdrop-opacity: 0.2
+}
+
+ion-item {
+  --ion-item-background: #ffeee1;
+  --border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.texto {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 13px;
+  color: #35221a;
+  margin-top: 7px;
+}
