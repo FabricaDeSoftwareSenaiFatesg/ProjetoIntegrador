@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UsuarioService} from "../../../arquitetura/services/usuario.service";
+import {TipoUsuarioEnum} from "../../../arquitetura/modelo/enum/tipo-usuario.enum";
 
 @Component({
   selector: 'app-tabs',
@@ -20,7 +21,7 @@ export class TabsPage implements OnInit {
 
   consultarUsuarioLogado() {
     this.usuarioService.getUsuarioLogado().subscribe(response => {
-      this.flagFuncionario = response.pessoa.flagFuncionario;
+      this.flagFuncionario = response.tipo === TipoUsuarioEnum.FUNCIONARIO;
     });
   }
 }

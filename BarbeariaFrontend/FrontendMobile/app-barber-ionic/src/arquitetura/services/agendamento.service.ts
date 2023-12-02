@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {ReservaModel} from "../modelo/reserva.model";
 import {FiltroHorarios} from "../modelo/filtro-horarios.model";
 import {Observable} from "rxjs";
+import {FiltroReservas} from "../modelo/filtro-reservas";
 import {StatusReservaEnum} from "../modelo/enum/status-reserva.enum";
 import {FiltroReservasProfissional} from "../modelo/filtro-reservas-profissional";
 import {ReservaListagemModel} from "../modelo/reserva-listagem.model";
@@ -27,6 +28,10 @@ export class AgendamentoService extends BaseService<ReservaModel>{
 
   listarReservasPorCliente(idCliente: number): Observable<any> {
     return this.http.get<any>(`${this.url}/${this.path}/listarReservasPorCliente/${idCliente}`);
+  }
+
+  listarReservasPeloMes(filtroReservas: FiltroReservas): Observable<ReservaListagemModel[]> {
+    return this.http.post<ReservaListagemModel[]>(`${this.url}/${this.path}/listarReservasPeloMes`, filtroReservas);
   }
 
   listarReservasPorProfissional(filtro: FiltroReservasProfissional): Observable<ReservaListagemModel[]> {

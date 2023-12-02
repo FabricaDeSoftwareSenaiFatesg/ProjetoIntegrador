@@ -57,6 +57,7 @@ public class PopulateBancoLimpo implements CommandLineRunner {
         pessoa.setCpf("000.000.000-00");
         pessoa.setNome("Admin");
         pessoa.setTelefone("(62) 00000-0000");
+        pessoa.setFlagFuncionario(true);
 
         return pessoa;
     }

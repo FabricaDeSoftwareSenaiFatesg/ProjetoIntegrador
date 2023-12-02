@@ -1,5 +1,7 @@
 package br.com.projeto.barberhelper.serviceImpl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,10 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.Tuple;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
 import br.com.projeto.barberhelper.model.*;
 import br.com.projeto.barberhelper.model.dto.PerfilDTO;
@@ -285,4 +284,61 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
         reserva.setStatusReserva(StatusReservaEnum.FINALIZADO);
         dao.save(reserva);
     }
+
+    @Override
+    public List<Reserva> listarReservasPeloMes(Long idPessoa, String dataString) {
+        final CriteriaBuilder builder = em.getCriteriaBuilder();
+        final CriteriaQuery<Tuple> query = builder.createTupleQuery();
+        final Root<Reserva> root = query.from(Reserva.class);
+        final Join<Reserva, Pessoa> rootPessoa = root.join("cliente");
+        final Join<Reserva, Pessoa> rootFuncionario = root.join("funcionario");
+
+        LocalDateTime data = LocalDateTime.parse(dataString, DateTimeFormatter.ISO_DATE_TIME);
+        int mes = data.getMonthValue();
+        int ano = data.getYear();
+
+        query.select(builder.tuple(
+                root.get("id").alias("id"),
+
+                rootPessoa.get("id").alias("cliente.id"),
+                rootPessoa.get("nome").alias("cliente.nome"),
+
+                rootFuncionario.get("id").alias("funcionario.id"),
+                rootFuncionario.get("nome").alias("funcionario.nome"),
+
+                root.get("dataInicial").alias("dataInicial"),
+                root.get("dataFim").alias("dataFim"),
+                root.get("statusReserva").alias("statusReserva")
+        ));
+
+        Predicate predicateCliente = builder.equal(rootPessoa.get("id"), idPessoa);
+        Predicate predicateMesAno = obterPredicateMesAno(builder, root, mes, ano);
+
+        query.where(builder.and(predicateCliente, predicateMesAno))
+                .orderBy(builder.desc(root.get("dataInicial")));
+
+        List<Reserva> reservas = this.executeQueryAndTransforResult(query, Reserva.class);
+
+        adicionarServicosNasReservas(reservas);
+
+        return reservas;
+    }
+
+    private Predicate obterPredicateMesAno(CriteriaBuilder builder, Root<Reserva> root, int mes, int ano) {
+        Expression<Integer> mesData = builder.function("MONTH", Integer.class, root.get("dataInicial"));
+        Expression<Integer> anoData = builder.function("YEAR", Integer.class, root.get("dataInicial"));
+
+        return builder.and(
+                builder.equal(mesData, mes),
+                builder.equal(anoData, ano)
+        );
+    }
+
+    private void adicionarServicosNasReservas(List<Reserva> reservas) {
+        reservas.forEach(reserva -> {
+            reserva.setServicos(new ArrayList<>());
+            reserva.getServicos().addAll(consultarServicosDaReserva(reserva.getId()));
+        });
+    }
+
 }
