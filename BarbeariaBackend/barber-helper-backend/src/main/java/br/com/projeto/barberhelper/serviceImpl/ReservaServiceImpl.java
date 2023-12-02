@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import br.com.projeto.barberhelper.generic.DAO;
 import br.com.projeto.barberhelper.generic.ServiceGenerico;
 import br.com.projeto.barberhelper.model.dto.FidelidadeDTO;
+import br.com.projeto.barberhelper.model.dto.PesquisaReservasProfissional;
 import br.com.projeto.barberhelper.model.enuns.StatusReservaEnum;
 import br.com.projeto.barberhelper.repository.ReservaDAO;
 import br.com.projeto.barberhelper.service.ReservaService;
@@ -265,9 +266,23 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
         return dao.getReservasByClienteAndDataInicialGreaterThanEqualAndStatusReservaEquals(new Pessoa(idPessoa), new Date(), StatusReservaEnum.RESERVADO);
     }
 
+    public List<Reserva> consultarReservasPorProfissional(PesquisaReservasProfissional pesquisaReservasProfissional) {
+        return dao.getReservasByFuncionarioAndDataInicialBetweenAndStatusReservaEquals(
+                pesquisaReservasProfissional.getProfissional(),
+                DateUtil.zerarHoraData(pesquisaReservasProfissional.getData()),
+                DateUtil.ultimaHoraData(pesquisaReservasProfissional.getData()),
+                pesquisaReservasProfissional.getStatus());
+    }
+
     public void cancelarReserva(Long id) {
         Reserva reserva = dao.getById(id);
         reserva.setStatusReserva(StatusReservaEnum.CANCELADO);
+        dao.save(reserva);
+    }
+
+    public void executarReserva(Long id) {
+        Reserva reserva = dao.getById(id);
+        reserva.setStatusReserva(StatusReservaEnum.FINALIZADO);
         dao.save(reserva);
     }
 }

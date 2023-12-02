@@ -10,7 +10,9 @@ import br.com.projeto.barberhelper.model.Servico;
 import br.com.projeto.barberhelper.model.dto.FidelidadeDTO;
 import br.com.projeto.barberhelper.model.Reserva;
 import br.com.projeto.barberhelper.model.dto.PerfilDTO;
+import br.com.projeto.barberhelper.model.dto.PesquisaReservasProfissional;
 import br.com.projeto.barberhelper.model.dto.listagem.ReservaListagemDTO;
+import br.com.projeto.barberhelper.model.enuns.StatusReservaEnum;
 
 public interface ReservaService extends Service<Long, Reserva> {
 
@@ -30,5 +32,9 @@ public interface ReservaService extends Service<Long, Reserva> {
 
     List<Reserva> consultarReservasPorCliente(Long id);
 
+    List<Reserva> consultarReservasPorProfissional(PesquisaReservasProfissional pesquisaReservasProfissional);
+
     void cancelarReserva(Long id);
+
+    void executarReserva(Long id);
 }
