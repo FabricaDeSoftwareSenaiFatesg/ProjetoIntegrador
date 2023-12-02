@@ -17,4 +17,5 @@ public interface ReservaDAO extends DAO<Long, Reserva> {
 
     List<Reserva> getReservasByClienteAndDataInicialGreaterThanEqualAndStatusReservaEquals(Pessoa cliente, Date dataInicial, StatusReservaEnum status);
 
+    List<Reserva> getReservasByFuncionarioAndDataInicialBetweenAndStatusReservaEquals(Pessoa funcionario, Date dataInicial, Date dataInicial2, StatusReservaEnum statusReserva);
 }

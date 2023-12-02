@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../reservas/reserva.module').then(m => m.ReservaPageModule)
       },
       {
+        path: 'reserva-profissional',
+        loadChildren: () => import('../reservas-profissional/reservas-profissional.module').then(m => m.ReservasProfissionalPageModule)
+      },
+      {
         path: 'perfil',
         loadChildren: () => import('../perfil/perfil.module').then(m => m.PerfilPageModule)
       },

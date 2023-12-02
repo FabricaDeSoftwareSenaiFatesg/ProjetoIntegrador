@@ -1,5 +1,6 @@
 package br.com.projeto.barberhelper.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -23,7 +24,9 @@ import br.com.projeto.barberhelper.model.Reserva;
 import br.com.projeto.barberhelper.model.dto.FidelidadeDTO;
 import br.com.projeto.barberhelper.model.dto.PerfilDTO;
 import br.com.projeto.barberhelper.model.dto.PesquisaHorarios;
+import br.com.projeto.barberhelper.model.dto.PesquisaReservasProfissional;
 import br.com.projeto.barberhelper.model.dto.listagem.ReservaListagemDTO;
+import br.com.projeto.barberhelper.model.enuns.StatusReservaEnum;
 import br.com.projeto.barberhelper.model.mapper.ReservaMapper;
 import br.com.projeto.barberhelper.model.mapper.ServicoMapper;
 import br.com.projeto.barberhelper.service.ReservaService;
@@ -107,10 +110,25 @@ public class ReservaController extends ManutencaoController<Reserva> {
         return ResponseEntity.ok().body(ReservaMapper.toListReservaListagemDTO(reservas)).getBody();
     }
 
+    @PostMapping(value = "/listarReservasPorProfissional")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ReservaListagemDTO> consultarReservasPorProfissional(@RequestBody PesquisaReservasProfissional pesquisaReservasProfissional) {
+        List<Reserva> reservas = service.consultarReservasPorProfissional(pesquisaReservasProfissional);
+        return ResponseEntity.ok().body(ReservaMapper.toListReservaListagemDTO(reservas)).getBody();
+    }
+
     @PutMapping(value = "/cancelarReserva/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void cancelarReserva(@PathVariable Long id) {
         service.cancelarReserva(id);
+    }
+
+    @PutMapping(value = "/executarReserva/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void executarReserva(@PathVariable Long id) {
+        service.executarReserva(id);
     }
 }
