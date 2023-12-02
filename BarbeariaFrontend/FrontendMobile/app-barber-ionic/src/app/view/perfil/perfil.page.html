@@ -26,20 +26,11 @@
         <ion-label class="texto">Meus Dados</ion-label>
       </ion-item>
 
-      <div class="ion-padding" slot="content">
+      <div class="ion-padding" slot="content" *ngIf="usuarioLogado">
         <section class="teste">
           <ion-row class="icon-row">
             <ion-col size="11">
-              <ion-input class="texto2" label="Nome:" placeholder="Nome" [(ngModel)]="pessoa.nome" [disabled]="visualizar"></ion-input>
-            </ion-col>
-            <ion-col size="1">
-              <ion-icon class= "icones" style="margin-top: 10px;" name="create" (click)="editar()"></ion-icon>
-            </ion-col>
-          </ion-row>
-    
-          <ion-row class="icon-row">
-            <ion-col size="11">
-               <ion-input class="texto2" label="Fone:" type="number" placeholder="(00) 00000-0000" [(ngModel)]="pessoa.telefone" [disabled]="visualizar"></ion-input>
+              <ion-input class="texto2" label="Nome:" placeholder="Nome" [(ngModel)]="usuarioLogado.pessoa.nome" [disabled]="visualizar"></ion-input>
             </ion-col>
             <ion-col size="1">
               <ion-icon class= "icones" style="margin-top: 10px;" name="create" (click)="editar()"></ion-icon>
@@ -48,20 +39,20 @@
 
           <ion-row class="icon-row">
             <ion-col size="11">
-              <ion-input class="texto2" label="Email:" type="email" placeholder="email@gmail.com" [(ngModel)]="pessoa.email" [disabled]="visualizar"></ion-input>
+               <ion-input class="texto2" label="Fone:" placeholder="(00) 00000-0000" [(ngModel)]="usuarioLogado.pessoa.telefone" [disabled]="visualizar"></ion-input>
             </ion-col>
             <ion-col size="1">
               <ion-icon class= "icones" style="margin-top: 10px;" name="create" (click)="editar()"></ion-icon>
             </ion-col>
           </ion-row>
         </section>
-       
+
         <ion-button class="botao1" style="margin-top: 30px; width: 50%; margin-left: 90px;" size="small" fill="solid" expand="block" (click)="salvar()" *ngIf="!visualizar">Salvar</ion-button>
       </div>
-    
+
     </ion-accordion>
 
-    <ion-accordion value="second" *ngIf="!pessoa.flagFuncionario">
+    <!--<ion-accordion value="second" *ngIf="usuarioLogado && !usuarioLogado.pessoa.flagFuncionario">
       <ion-item slot="header" color="light">
         <ion-icon class= "icones" slot="start" name="pricetags"></ion-icon>
         <ion-label class="texto">Fidelidade</ion-label>
@@ -81,28 +72,31 @@
         <ion-button class="botao1" size="small" fill="solid" expand="block" (click)="resgatarRecompensa()" *ngIf="reservasPerfil.length === quantidadeMaximaReservas">Resgatar Recompensa</ion-button>
 
       </div>
-    </ion-accordion>
+    </ion-accordion>-->
 
-    <ion-accordion value="third">
+    <ion-accordion value="third" *ngIf="usuarioLogado && !funcionario">
       <ion-item slot="header" color="light">
         <ion-icon class= "icones" slot="start" name="calendar"></ion-icon>
         <ion-label class="texto">Histórico</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content">
 
-        <ion-datetime presentation="date" [(ngModel)]="dataSelecionada"></ion-datetime>
-        <ion-button class="botao1" size="small"  fill="solid" expand="block" (click)="consultarHistorico(dataSelecionada)">Consultar Histórico</ion-button>
+        <ion-datetime presentation="month-year" [(ngModel)]="dataSelecionada"></ion-datetime>
+        <ion-button class="botao1" size="small"  fill="solid" expand="block" (click)="consultarHistorico()">Consultar Histórico</ion-button>
 
-        <ion-label class="texto2" *ngIf="historico.length === 0">Você não possui serviços no dia consultado!</ion-label>
+        <ion-label class="texto2" *ngIf="reservasPerfil.length === 0">Você não possui serviços no dia consultado!</ion-label>
 
-        <ion-list *ngFor="let reservaPerfil of historico">
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img class="imagem" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-            </ion-thumbnail>
-            <ion-label class="texto2">{{reservaPerfil.servico.descricao}} {{" - "}} {{reservaPerfil.data | date : 'dd/MM HH:mm'}}</ion-label>
-          </ion-item>
-        </ion-list>
+        <div *ngIf="reservasPerfil.length > 0">
+          <ion-list *ngFor="let reservaPerfil of reservasPerfil" >
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img class="imagem" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
+              </ion-thumbnail>
+              <ion-label class="texto2">{{reservaPerfil.servicoNome}} {{" - "}} {{reservaPerfil.data}}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+
       </div>
     </ion-accordion>
   </ion-accordion-group>

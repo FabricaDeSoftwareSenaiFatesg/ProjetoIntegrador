@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.projeto.barberhelper.model.dto.PesquisaReservas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +61,6 @@ public class ReservaController extends ManutencaoController<Reserva> {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarHorarios(@RequestBody PesquisaHorarios pesquisaHorarios) {
-
         List<Reserva> reservas = service.obterReservasDoFuncionarioPorData(pesquisaHorarios.getProfissional().getId(), pesquisaHorarios.getData());
         List<String> horariosReservados = service.getHorariosReservadosDasReservas(reservas);
         return Response.ok(service.getHorariosFiltardos(horariosReservados, pesquisaHorarios.getServicos(), pesquisaHorarios.getData())).build();
@@ -115,6 +115,14 @@ public class ReservaController extends ManutencaoController<Reserva> {
     @Produces(MediaType.APPLICATION_JSON)
     public List<ReservaListagemDTO> consultarReservasPorProfissional(@RequestBody PesquisaReservasProfissional pesquisaReservasProfissional) {
         List<Reserva> reservas = service.consultarReservasPorProfissional(pesquisaReservasProfissional);
+        return ResponseEntity.ok().body(ReservaMapper.toListReservaListagemDTO(reservas)).getBody();
+    }
+
+    @PostMapping(value = "/listarReservasPeloMes")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<ReservaListagemDTO> listarReservasPeloMes(@RequestBody PesquisaReservas pesquisaReservas) {
+        List<Reserva> reservas = service.listarReservasPeloMes(pesquisaReservas.getId(), pesquisaReservas.getData());
         return ResponseEntity.ok().body(ReservaMapper.toListReservaListagemDTO(reservas)).getBody();
     }
 

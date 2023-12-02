@@ -36,5 +36,7 @@ public interface ReservaService extends Service<Long, Reserva> {
 
     void cancelarReserva(Long id);
 
+    List<Reserva> listarReservasPeloMes(Long id, String data);
+
     void executarReserva(Long id);
 }
