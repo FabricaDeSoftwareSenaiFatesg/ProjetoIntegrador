@@ -1,57 +1,139 @@
+// /=====================================PROPRIEDADES IMAGEM PERFIL======================================/
+
+.circulo-imagem-perfil {
+  height: 200px;
+  width: 200px;
+  background-color: #ad774c;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo-imagem-perfil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 75px;
+}
+
+.imagem-perfil {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+// /=====================================SEÇÃO PRINCIPAL======================================/
+
+.fundoPerfil {
+  min-height: 90vh;
+  text-align: center;
+  background-color: #ffeee1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.texto {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 13px;
+  color: #ffffff;
+  margin-top: 7px;
+}
+
+.texto2 {
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 13px;
+  color: #35221a;
+  margin-top: 7px;
+}
+
+.icones {
+  font-size: 22px !important;
+  color: #35221a;
+}
+
 .imagem {
-    border-style: solid;
-    border-width: 0px;
-    border-radius: 150px;
-    width: 280px;
-    height: 280px;
+  border-style: solid;
+  border-width: 0px;
+  border-radius: 150px;
+  width: 90%;
+  height: 90%;
 }
 
-.container-imagem {
-    width: 100%;
-    text-align: center;
+.botao1 {
+  --background: #d18d60;
+  --background-hover: #d18d60;
+  --background-activated: #d18d60;
+  --background-focused: #d18d60;
+
+  font-family: Khand;
+  font-weight: 600;
+  font-size: 25px;
+  color: white !important;
+
+
+  --border-radius: 8px;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 2px;
+
+  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+
+  --ripple-color: white;
+
+  width: 70%;
+  margin-left: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.unread-indicator {
-  background: var(--ion-color-primary);
+// /=====================================SEÇÃO MODAL EXPANSIVO======================================/
 
-  width: 10px;
-  height: 10px;
-
-  border-radius: 100%;
-
-  position: absolute;
-
-  inset-inline-start: 12px;
-  top: 12px;
+.ion-color-primary {
+  --ion-color-primary: #35221a;
 }
 
-.metadata-end-wrapper {
-  position: absolute;
+:host .calendar-days-of-week {
+  --ion-color-step-300: #35221a;
+}
 
-  top: 10px;
-  inset-inline-end: 10px;
+.ion-padding {
+  background-color: #ffeee1;
+}
 
-  font-size: 0.8rem;
+ion-accordion-group {
+  flex: 1;
+  min-width: 0;
+  --ion-color-light: #ad774c;
+  --ion-color-light-shade: #35221a;
+  --ion-color-light-contrast: #35221a;
+}
 
+ion-datetime {
+  --ion-color-step-300: #35221a;
+}
+
+ion-item {
+  --ion-item-background: #ffeee1;
+  --inner-border-width: 0;
+}
+
+ion-thumbnail {
+  --ion-item-background: #ffeee1;
+  --inner-border-width: 0;
+}
+
+ion-row.icon-row {
   display: flex;
   align-items: center;
 }
 
-ion-label strong {
-  display: block;
-
-  max-width: calc(100% - 60px);
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-}
-
-ion-label ion-note {
-  font-size: 0.9rem;
-}
-
-.imagem {
-  width: 90%;
-  height: 90%;
+.teste {
+  margin-left: 30px;
+  margin-right: 30px;
 }

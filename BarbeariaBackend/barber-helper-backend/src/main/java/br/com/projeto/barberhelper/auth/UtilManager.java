@@ -1,5 +1,7 @@
 package br.com.projeto.barberhelper.auth;
 
+import javax.annotation.PostConstruct;
+
 import br.com.projeto.barberhelper.utilsHttp.RespHttp;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.httpclient.HttpClient;
@@ -30,7 +32,7 @@ public class UtilManager {
 			int result = httpClient.executeMethod(httpPost);
 			RespHttp resp = new RespHttp(result, httpPost);
 			return resp.getContentAsMap();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
