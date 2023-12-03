@@ -28,4 +28,8 @@ public class Usuario extends EntidadeGenerica {
     @JoinColumn(name = "id_pessoa", referencedColumnName = "id")
     private Pessoa pessoa;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_imagem", referencedColumnName = "id")
+    private Imagem imagem;
+
 }

@@ -6,6 +6,8 @@ import {StatusReservaEnum} from "../../../arquitetura/modelo/enum/status-reserva
 import {Servico} from "../../../arquitetura/modelo/servico.model";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
+import { UsuarioModel } from 'src/arquitetura/modelo/usuario.model';
+import { Imagem } from 'src/arquitetura/modelo/imagem.model';
 
 @Component({
   selector: 'app-perfil',
@@ -22,6 +24,7 @@ export class PerfilPage {
 
   quantidadeMaximaReservas = 8;
   visualizar = true;
+  usuario: UsuarioModel = new UsuarioModel();
   pessoa: Pessoa = new Pessoa();
   reservasPerfil: ReservaPerfil[] = [];
   historico: ReservaPerfil[] = [];
@@ -93,16 +96,31 @@ export class PerfilPage {
       width: 600,
       resultType: this.checkPlatformForWeb() ? CameraResultType.DataUrl : CameraResultType.Uri
     });
-    console.log('image: ', image);
     this.selectedImage = image;
     if(this.checkPlatformForWeb()) this.selectedImage.webPath = image.dataUrl;
 
-    console.log(this.selectedImage);
+    console.log(image)
   }
 
   checkPlatformForWeb() {
     if(Capacitor.getPlatform() == 'web' || Capacitor.getPlatform() == 'ios') return true;
     return false;
+  }
+
+  converterImagemSelecionada() {
+
+    if (!this.selectedImage) {
+
+      let imagemSelecionada = new Imagem();
+
+      imagemSelecionada.nome = "Imagem perfil";
+
+      imagemSelecionada.conteudo = this.selectedImage.dataUrl?.slice(this.selectedImage.dataUrl?.indexOf(';base64,'));
+
+      imagemSelecionada.tipo = this.selectedImage.dataUrl?.slice((this.selectedImage.dataUrl?.indexOf(':') -1), this.selectedImage.dataUrl?.indexOf(';base64,'));
+
+    }
+
   }
 
 }

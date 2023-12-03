@@ -15,4 +15,6 @@ public interface UsuarioService extends Service<Long, Usuario> {
 
     boolean dadosValidos(Usuario usuario);
 
+
+
 }

@@ -12,10 +12,10 @@
 
   <div class="campo-imagem-perfil">
     <div *ngIf="!selectedImage" class="circulo-imagem-perfil" (click)="getPicture()">
-      <ion-icon class="icones" name="image" style="width: 60px; height: 60px;"></ion-icon>
+      <ion-icon class="icones" name="image" style="width: 80px; height: 80px;"></ion-icon>
     </div>
-    <div *ngIf="selectedImage" (click)="getPicture()">
-      <img [src]="selectedImage?.webPath" width="200px" class="imagem-perfil"/>
+    <div *ngIf="selectedImage">
+      <img [src]="selectedImage?.webPath" width="300px" class="imagem-perfil" (click)="getPicture()"/>
     </div>
   </div>
 
@@ -36,7 +36,7 @@
               <ion-icon class= "icones" style="margin-top: 10px;" name="create" (click)="editar()"></ion-icon>
             </ion-col>
           </ion-row>
-    
+
           <ion-row class="icon-row">
             <ion-col size="11">
                <ion-input class="texto2" label="Fone:" type="number" placeholder="(00) 00000-0000" [(ngModel)]="pessoa.telefone" [disabled]="visualizar"></ion-input>
@@ -55,10 +55,10 @@
             </ion-col>
           </ion-row>
         </section>
-       
+
         <ion-button class="botao1" style="margin-top: 30px; width: 50%; margin-left: 90px;" size="small" fill="solid" expand="block" (click)="salvar()" *ngIf="!visualizar">Salvar</ion-button>
       </div>
-    
+
     </ion-accordion>
 
     <ion-accordion value="second" *ngIf="!pessoa.flagFuncionario">
