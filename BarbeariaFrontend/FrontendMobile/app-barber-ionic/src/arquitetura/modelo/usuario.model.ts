@@ -7,7 +7,7 @@ export class UsuarioModel extends Entidade{
   email: string = '';
   senha: string = '';
   pessoa: Pessoa = new Pessoa();
-  tipo: TipoUsuarioEnum = TipoUsuarioEnum.CLIENTE;
+  tipo?: TipoUsuarioEnum;
   imagem: Imagem = new Imagem();
 
   constructor() {

@@ -1,13 +1,13 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Pessoa} from "../../../arquitetura/modelo/pessoa.model";
-import {ReservaPerfil} from "../../../arquitetura/modelo/reserva-perfil";
-import {StatusReservaEnum} from "../../../arquitetura/modelo/enum/status-reserva.enum";
-import {Servico} from "../../../arquitetura/modelo/servico.model";
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Capacitor } from '@capacitor/core';
-import { UsuarioModel } from 'src/arquitetura/modelo/usuario.model';
-import { Imagem } from 'src/arquitetura/modelo/imagem.model';
+import {Camera, CameraResultType, CameraSource} from '@capacitor/camera';
+import {Capacitor} from '@capacitor/core';
+import {UsuarioService} from "../../../arquitetura/services/usuario.service";
+import {UsuarioModel} from "../../../arquitetura/modelo/usuario.model";
+import {AgendamentoService} from "../../../arquitetura/services/agendamento.service";
+import {FiltroReservas} from "../../../arquitetura/modelo/filtro-reservas";
+import {ReservaListagemModel} from "../../../arquitetura/modelo/reserva-listagem.model";
+import {TipoUsuarioEnum} from "../../../arquitetura/modelo/enum/tipo-usuario.enum";
 
 @Component({
   selector: 'app-perfil',
@@ -19,25 +19,29 @@ export class PerfilPage {
   constructor(
     protected changeDetectorRef: ChangeDetectorRef,
     protected router: Router,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    private usuarioService: UsuarioService,
+    private agendamentoService: AgendamentoService
   ) {}
 
+  filtroReservas: FiltroReservas = new FiltroReservas();
+  usuarioLogado!: UsuarioModel;
   quantidadeMaximaReservas = 8;
   visualizar = true;
-  usuario: UsuarioModel = new UsuarioModel();
-  pessoa: Pessoa = new Pessoa();
-  reservasPerfil: ReservaPerfil[] = [];
-  historico: ReservaPerfil[] = [];
-  dataSelecionada = new Date;
+  reservasPerfil: ReservaListagemModel[] = [];
+  dataSelecionada!: string;
   selectedImage: any;
+  funcionario: boolean = false;
 
   ngOnInit() {
-    this.pessoa.nome = 'Nome da Pessoa';
-    this.pessoa.telefone = '62 8888-8888';
-    this.pessoa.email = 'email@gmail.com';
-    this.pessoa.flagFuncionario = false;
+    this.consultarUsuarioLogado();
+  }
 
-    this.reservasPerfil = this.getListaReservas();
+  consultarUsuarioLogado() {
+    this.usuarioService.getUsuarioLogado().subscribe(response => {
+      this.usuarioLogado = response;
+      this.funcionario = this.usuarioLogado.tipo === TipoUsuarioEnum.FUNCIONARIO;
+    });
   }
 
   editar() {
@@ -45,48 +49,17 @@ export class PerfilPage {
   }
 
   salvar() {
-    console.log('chamei o salvar');
+    this.usuarioService.alterar(this.usuarioLogado).subscribe();
     this.visualizar = !this.visualizar;
   }
 
-  getListaReservas(): ReservaPerfil[] {
+  consultarHistorico() {
+    this.filtroReservas.id = this.usuarioLogado.pessoa.id;
+    this.filtroReservas.data = this.dataSelecionada;
 
-    // ao chamar essa função, já vai consultar o backend
-      // a consulta ja vai limitar a quantidade de resultados para 8
-
-    let reservas:ReservaPerfil[] = [];
-
-    let reservaPerfil =  new ReservaPerfil();
-    let servico = new Servico;
-    servico.descricao = 'Corte';
-    reservaPerfil.servico = servico;
-    reservaPerfil.statusReserva = StatusReservaEnum.RESERVADO;
-    reservaPerfil.data = new Date();
-
-    reservas.push(reservaPerfil);
-    reservas.push(reservaPerfil);
-    reservas.push(reservaPerfil);
-    reservas.push(reservaPerfil);
-    reservas.push(reservaPerfil);
-    reservas.push(reservaPerfil);
-    reservas.push(reservaPerfil);
-    reservas.push(reservaPerfil);
-
-    return reservas;
-  }
-
-  resgatarRecompensa() {
-    console.log('chamou o resgatar recompensa');
-
-    // remover lista de "FidelidadeTO" do banco de dados
-
-    this.reservasPerfil = [];
-  }
-
-  consultarHistorico(dataSelecionada: Date) {
-    console.log(dataSelecionada);
-    console.log('chamei a funcao de consultar historico');
-    this.historico = this.getListaReservas();
+    this.agendamentoService.listarReservasPeloMes(this.filtroReservas).subscribe(response => {
+      this.reservasPerfil = response;
+    });
   }
 
   async getPicture() {

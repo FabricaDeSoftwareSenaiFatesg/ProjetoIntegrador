@@ -25,6 +25,10 @@ export class UsuarioService extends BaseService<UsuarioModel>{
     return this.http.post(`${this.url}/usuario`, usuario);
   }
 
+  alterar(usuario: UsuarioModel) {
+    return this.http.put(`${this.url}/usuario`, usuario);
+  }
+
   logout() {
     return this.http.get<any>(`${this.url}/usuario/logout`)
   }
