@@ -1,4 +1,5 @@
 import { Entidade } from './entidade.model';
+import { Imagem } from './imagem.model';
 
 export class Pessoa extends Entidade {
   nome: string = "";
@@ -7,6 +8,7 @@ export class Pessoa extends Entidade {
   flagFuncionario: boolean = false;
   descricaoFuncionario: string = "";
   email?: string = "";
+  imagemPerfil: Imagem = new Imagem();
 
   constructor() {
     super();

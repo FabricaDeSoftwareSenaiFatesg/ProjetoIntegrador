@@ -8,6 +8,8 @@ import {AgendamentoService} from "../../../arquitetura/services/agendamento.serv
 import {FiltroReservas} from "../../../arquitetura/modelo/filtro-reservas";
 import {ReservaListagemModel} from "../../../arquitetura/modelo/reserva-listagem.model";
 import {TipoUsuarioEnum} from "../../../arquitetura/modelo/enum/tipo-usuario.enum";
+import { Imagem } from 'src/arquitetura/modelo/imagem.model';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -21,7 +23,9 @@ export class PerfilPage {
     protected router: Router,
     protected activatedRoute: ActivatedRoute,
     private usuarioService: UsuarioService,
-    private agendamentoService: AgendamentoService
+    private agendamentoService: AgendamentoService,
+    private navigation: NavController,
+    private menuCtrl: MenuController
   ) {}
 
   filtroReservas: FiltroReservas = new FiltroReservas();
@@ -40,6 +44,7 @@ export class PerfilPage {
   consultarUsuarioLogado() {
     this.usuarioService.getUsuarioLogado().subscribe(response => {
       this.usuarioLogado = response;
+      this.obterConteudoFormatado();
       this.funcionario = this.usuarioLogado.tipo === TipoUsuarioEnum.FUNCIONARIO;
     });
   }
@@ -72,7 +77,7 @@ export class PerfilPage {
     this.selectedImage = image;
     if(this.checkPlatformForWeb()) this.selectedImage.webPath = image.dataUrl;
 
-    console.log(image)
+    this.converterImagemSelecionada();
   }
 
   checkPlatformForWeb() {
@@ -82,18 +87,44 @@ export class PerfilPage {
 
   converterImagemSelecionada() {
 
-    if (!this.selectedImage) {
+    if (this.selectedImage) {
 
       let imagemSelecionada = new Imagem();
 
       imagemSelecionada.nome = "Imagem perfil";
 
-      imagemSelecionada.conteudo = this.selectedImage.dataUrl?.slice(this.selectedImage.dataUrl?.indexOf(';base64,'));
+      imagemSelecionada.conteudo = this.selectedImage.dataUrl?.slice(this.selectedImage.dataUrl?.indexOf(';base64,') +8);
 
-      imagemSelecionada.tipo = this.selectedImage.dataUrl?.slice((this.selectedImage.dataUrl?.indexOf(':') -1), this.selectedImage.dataUrl?.indexOf(';base64,'));
+      imagemSelecionada.tipo = this.selectedImage.dataUrl?.slice((this.selectedImage.dataUrl?.indexOf(':') +1), this.selectedImage.dataUrl?.indexOf(';base64,'));
+
+      this.usuarioLogado.imagem = imagemSelecionada;
+
+      this.salvar();
 
     }
 
+  }
+
+  obterConteudoFormatado() {
+
+    if (this.usuarioLogado.imagem) {
+
+      this.selectedImage = new Imagem();
+
+      this.selectedImage.webPath = 'data:' + this.usuarioLogado.imagem.tipo + ';base64,' + this.usuarioLogado.imagem.conteudo;
+
+    }
+
+  }
+
+  deslogar() {
+    this.usuarioService.logout().subscribe(() => {
+      if (localStorage.getItem("ads_access_token") !== null) {
+        localStorage.removeItem("ads_access_token");
+      }
+      this.navigation.navigateRoot("login");
+    });
+    this.menuCtrl.open('end');
   }
 
 }

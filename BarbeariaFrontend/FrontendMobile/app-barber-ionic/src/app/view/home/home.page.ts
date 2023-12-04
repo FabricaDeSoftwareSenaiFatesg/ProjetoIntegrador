@@ -108,8 +108,7 @@ export class HomePage implements OnInit {
     this.iconFlips[icon] = !this.iconFlips[icon];
   }
 
-  openEndMenu() {
-    console.log('Botão clicado. Tentando abrir o menu.');
+  deslogar() {
     this.usuarioService.logout().subscribe(() => {
       if (localStorage.getItem("ads_access_token") !== null) {
         localStorage.removeItem("ads_access_token");

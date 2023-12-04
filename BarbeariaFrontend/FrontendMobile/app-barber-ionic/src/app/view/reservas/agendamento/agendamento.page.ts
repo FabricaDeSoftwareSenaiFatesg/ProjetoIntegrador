@@ -9,6 +9,7 @@ import {AgendamentoService} from "../../../../arquitetura/services/agendamento.s
 import {ReservaModel} from "../../../../arquitetura/modelo/reserva.model";
 import {UsuarioModel} from "../../../../arquitetura/modelo/usuario.model";
 import {UsuarioService} from "../../../../arquitetura/services/usuario.service";
+import { Imagem } from 'src/arquitetura/modelo/imagem.model';
 
 @Component({
   selector: 'app-agendamento',
@@ -186,5 +187,11 @@ export class AgendamentoPage implements OnInit {
 
   voltar() {
     this.navigation.navigateRoot("/tabs/reserva")
+  }
+
+  obterConteudoFormatado(imagem: Imagem) {
+
+    return 'data:' + imagem.tipo + ';base64,' + imagem.conteudo;
+
   }
 }

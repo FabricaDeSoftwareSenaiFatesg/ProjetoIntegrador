@@ -3,6 +3,7 @@ package br.com.projeto.barberhelper.controller;
 import br.com.projeto.barberhelper.generic.ManutencaoController;
 import br.com.projeto.barberhelper.generic.Service;
 import br.com.projeto.barberhelper.model.Imagem;
+import br.com.projeto.barberhelper.model.Pessoa;
 import br.com.projeto.barberhelper.model.Usuario;
 import br.com.projeto.barberhelper.model.enuns.TipoUsuarioEnum;
 import br.com.projeto.barberhelper.service.UsuarioService;
@@ -93,23 +94,6 @@ public class UsuarioController extends ManutencaoController<Usuario> {
         }
 
         return ResponseEntity.ok().body(this.getServico().listar());
-    }
-
-    @PostMapping(value = "/atualizar-foto-perfil")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public void atualizarImagemPergil(@RequestBody Imagem entidade) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        String login = (String) authentication.getPrincipal();
-
-        Usuario usuario = this.service.getUsuarioPeloLogin(login);
-
-        usuario.setImagem(entidade);
-
-        this.service.salvar(usuario);
-
     }
 
 }

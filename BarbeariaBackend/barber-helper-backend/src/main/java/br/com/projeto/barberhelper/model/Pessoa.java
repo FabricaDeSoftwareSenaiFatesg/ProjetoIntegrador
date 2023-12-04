@@ -23,6 +23,9 @@ public class Pessoa extends EntidadeGenerica {
 
     private String descricaoFuncionario;
 
+    @Transient
+    private Imagem imagemPerfil;
+
     public Pessoa(Long id) {
 
         this.setId(id);

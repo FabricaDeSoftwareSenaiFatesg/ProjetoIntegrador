@@ -44,7 +44,7 @@
         <ion-list *ngFor="let profissional of profissionais">
           <ion-item (click)="selecionarProfissional(profissional)">
             <ion-avatar slot="start">
-              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+              <ion-img [src]="obterConteudoFormatado(profissional.imagemPerfil)"></ion-img>
             </ion-avatar>
             <ion-label>{{ profissional.nome }}</ion-label>
           </ion-item>
