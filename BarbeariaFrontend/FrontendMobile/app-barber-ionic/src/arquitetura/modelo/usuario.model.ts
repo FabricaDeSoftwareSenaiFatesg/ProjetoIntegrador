@@ -8,7 +8,7 @@ export class UsuarioModel extends Entidade{
   senha: string = '';
   pessoa: Pessoa = new Pessoa();
   tipo?: TipoUsuarioEnum;
-  imagem: Imagem = new Imagem();
+  imagem?: Imagem;
 
   constructor() {
     super();

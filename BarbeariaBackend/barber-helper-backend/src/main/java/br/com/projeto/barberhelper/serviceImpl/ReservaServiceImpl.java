@@ -262,7 +262,10 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
     }
 
     public List<Reserva> consultarReservasPorCliente(Long idPessoa) {
-        return dao.getReservasByClienteAndDataInicialGreaterThanEqualAndStatusReservaEquals(new Pessoa(idPessoa), new Date(), StatusReservaEnum.RESERVADO);
+        if (dao.existsReservaByCliente(new Pessoa(idPessoa))) {
+            return dao.getReservasByClienteAndDataInicialGreaterThanEqualAndStatusReservaEquals(new Pessoa(idPessoa), new Date(), StatusReservaEnum.RESERVADO);
+        }
+        return new ArrayList<>();
     }
 
     public List<Reserva> consultarReservasPorProfissional(PesquisaReservasProfissional pesquisaReservasProfissional) {

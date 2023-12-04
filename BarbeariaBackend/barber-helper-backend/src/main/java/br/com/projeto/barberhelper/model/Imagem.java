@@ -15,19 +15,19 @@ import javax.persistence.Entity;
 @Entity(name = "tb_imagem")
 public class Imagem extends EntidadeGenerica {
 
-    @Column(name = "nm_imagem", length = 60)
+    @Column(name = "nm_imagem", length = 120)
     private String nome;
 
     @Column(name = "conteudo", length = 20)
     private byte[] conteudo;
 
-    @Column(name = "tamanho", length = 60)
+    @Column(name = "tamanho", length = 120)
     private String tamanho;
 
-    @Column(name = "tipo", length = 60)
+    @Column(name = "tipo", length = 120)
     private String tipo;
 
-    @Column(name = "dimensoes", length = 60)
+    @Column(name = "dimensoes", length = 120)
     private String dimensoes;
 
 }
