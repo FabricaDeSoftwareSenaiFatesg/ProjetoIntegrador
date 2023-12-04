@@ -3,6 +3,7 @@ import {IonModal, NavController} from '@ionic/angular';
 import {UsuarioService} from "../../../arquitetura/services/usuario.service";
 import {UsuarioModel} from "../../../arquitetura/modelo/usuario.model";
 import {MessageService} from "primeng/api";
+import {TipoUsuarioEnum} from "../../../arquitetura/modelo/enum/tipo-usuario.enum";
 
 @Component({
   selector: 'app-home',
@@ -55,6 +56,8 @@ export class LoginPage {
 
   cadastrar() {
     if (!this.camposValidos(this.usuario)) return;
+
+    this.usuario.tipo = TipoUsuarioEnum.CLIENTE;
 
     this.usuarioService.inserirUsuarioNoServidorDeAutenticacao(this.usuario).subscribe(() => {
       this.usuarioService.salvar(this.usuario).subscribe(() => {
