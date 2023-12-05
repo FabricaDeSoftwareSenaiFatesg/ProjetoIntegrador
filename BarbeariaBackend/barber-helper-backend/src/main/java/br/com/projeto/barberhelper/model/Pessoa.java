@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,6 +31,26 @@ public class Pessoa extends EntidadeGenerica {
     public Pessoa(Long id) {
 
         this.setId(id);
+
+    }
+
+    public String getNomeFormatadoDashBoard() {
+
+        if (!Objects.isNull(nome)) {
+
+            String[] nomeSeparado = nome.split(" ");
+
+            if (!Objects.isNull(nomeSeparado) && nomeSeparado.length > 1) {
+
+            } else {
+                return nomeSeparado[0];
+            }
+
+            return nomeSeparado[0] + " " + nomeSeparado[1]. substring(0, 1);
+
+        } else {
+            return "";
+        }
 
     }
 

@@ -85,14 +85,16 @@
 
   <section>
     <h1 class="titulos">PROFISSIONAIS</h1>
-    <div class="profissionais">
-      <div class="slide" *ngFor="let profissional of profissionais">
-        <ion-avatar>
-          <img [src]="profissional.imagem" />
-        </ion-avatar>
-        <p class="text">{{ profissional.nome }}</p>
-      </div>
-    </div>
+    <p-carousel [value]="profissionais" [numVisible]="4" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
+      <ng-template let-profissional pTemplate="item">
+        <div class="profissionais">
+          <ion-avatar>
+            <img [src]="obterConteudoFormatado(profissional.imagemPerfil)" />
+          </ion-avatar>
+          <p class="text">{{profissional.nomeFormatadoDashBoard}}</p>
+        </div>
+      </ng-template>
+    </p-carousel>
   </section>
 
   <div class="divisoria-marrom"></div>

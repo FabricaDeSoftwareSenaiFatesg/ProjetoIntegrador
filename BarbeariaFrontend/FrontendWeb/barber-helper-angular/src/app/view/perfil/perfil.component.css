@@ -44,7 +44,13 @@
   align-content: center;
 }
 
-.icone-perfil {
+.imagem-perfil {
+  width: 100%;
+  max-width: 350px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #ad774c;
   padding: 0;
 }
 

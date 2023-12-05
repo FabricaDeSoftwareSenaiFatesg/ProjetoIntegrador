@@ -1,13 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MenuItem } from 'primeng/api';
 import { Usuario } from 'src/app/arquitetura/modelo/usuario.model';
 import { UsuarioService } from '../usuario/usuario.service';
-import { TipoUsuarioEnum } from 'src/app/arquitetura/modelo/tipo-usuario.enum';
 import { ReservaService } from '../reserva/reserva.service';
 import { PerfilDTO } from 'src/app/arquitetura/modelo/perfilDTO.model';
 import { StatusReservaEnum } from 'src/app/arquitetura/modelo/status-reserva.enum';
 import { StatusPedidoEnum } from 'src/app/arquitetura/modelo/status-pedido.enum';
+import { Imagem } from 'src/app/arquitetura/modelo/imagem.model';
 
 @Component({
   selector: 'app-perfil',
@@ -78,6 +77,20 @@ export class PerfilComponent implements OnInit {
       this.router.navigate(['']);
       this.ngOnInit();
     });
+  }
+
+  obterConteudoFormatado(imagem?: Imagem) {
+
+    if (imagem) {
+
+      return 'data:' + imagem.tipo + ';base64,' + imagem.conteudo;
+
+    } else {
+
+      return 'assets/icone-user.svg';
+
+    }
+
   }
 
 }

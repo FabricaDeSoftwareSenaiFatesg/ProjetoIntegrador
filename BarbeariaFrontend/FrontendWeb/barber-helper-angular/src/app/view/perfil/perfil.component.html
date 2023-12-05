@@ -6,8 +6,8 @@
       PERFIL
     </div>
 
-    <div class="col row icone-perfil">
-      <img src="assets/icone-user.svg" alt="user" height="350">
+    <div class="col row">
+      <img [src]="obterConteudoFormatado(usuarioLogado.imagem)" alt="user" class="imagem-perfil">
     </div>
 
     <div class="col dados-perfil">

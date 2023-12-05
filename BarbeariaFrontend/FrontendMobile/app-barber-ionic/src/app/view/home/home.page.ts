@@ -2,6 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {MenuController, LoadingController, NavController} from '@ionic/angular';
 import { GoogleMap } from '@capacitor/google-maps';
 import {UsuarioService} from "../../../arquitetura/services/usuario.service";
+import { Imagem } from 'src/arquitetura/modelo/imagem.model';
+import { Pessoa } from 'src/arquitetura/modelo/pessoa.model';
+import { PessoaService } from 'src/arquitetura/services/pessoa.service';
 
 interface IconFlips {
   isCorteFlipped: boolean;
@@ -15,11 +18,6 @@ interface Servico {
   valor: string;
 }
 
-interface Profissional {
-  nome: string;
-  imagem: string;
-}
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -31,6 +29,7 @@ export class HomePage implements OnInit {
   newMap!: GoogleMap;
 
   selectedService: any;
+  responsiveOptions: any[] | undefined
 
   iconFlips: IconFlips = {
     isCorteFlipped: false,
@@ -66,17 +65,13 @@ export class HomePage implements OnInit {
     '08:00 às 16:00',
   ];
 
-  profissionais: Profissional[] = [
-    { nome: '1', imagem: '/assets/images/avatar.png' },
-    { nome: '2', imagem: '/assets/images/avatar.png' },
-    { nome: '3', imagem: '/assets/images/avatar.png' },
-    { nome: '4', imagem: '/assets/images/avatar.png' },
-  ];
+  profissionais: Pessoa[] = [];
 
   constructor(
     private menuCtrl: MenuController,
     public loadingController: LoadingController,
     private usuarioService: UsuarioService,
+    private pessoaService: PessoaService,
     private navigation: NavController
   ) {}
 
@@ -87,6 +82,26 @@ export class HomePage implements OnInit {
       this.createMap();
       this.dismissLoading();
     }, 1000);
+
+    this.inicializarProfissionais();
+
+    this.responsiveOptions = [
+      {
+          breakpoint: '1199px',
+          numVisible: 1,
+          numScroll: 1
+      },
+      {
+          breakpoint: '991px',
+          numVisible: 2,
+          numScroll: 1
+      },
+      {
+          breakpoint: '767px',
+          numVisible: 1,
+          numScroll: 1
+      }
+    ];
   }
 
   async createMap() {
@@ -130,4 +145,25 @@ export class HomePage implements OnInit {
   async dismissLoading() {
     await this.loadingController.dismiss();
   }
+
+  obterConteudoFormatado(imagem?: Imagem) {
+
+    if (imagem) {
+
+      return 'data:' + imagem.tipo + ';base64,' + imagem.conteudo;
+
+    } else {
+
+      return '/assets/images/avatar.png';
+
+    }
+
+  }
+
+  inicializarProfissionais() {
+    this.pessoaService.listarProfissionais().subscribe(response => {
+      this.profissionais = response;
+    });
+  }
+
 }

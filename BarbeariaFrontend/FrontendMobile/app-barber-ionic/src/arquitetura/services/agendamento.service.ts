@@ -5,7 +5,6 @@ import {ReservaModel} from "../modelo/reserva.model";
 import {FiltroHorarios} from "../modelo/filtro-horarios.model";
 import {Observable} from "rxjs";
 import {FiltroReservas} from "../modelo/filtro-reservas";
-import {StatusReservaEnum} from "../modelo/enum/status-reserva.enum";
 import {FiltroReservasProfissional} from "../modelo/filtro-reservas-profissional";
 import {ReservaListagemModel} from "../modelo/reserva-listagem.model";
 

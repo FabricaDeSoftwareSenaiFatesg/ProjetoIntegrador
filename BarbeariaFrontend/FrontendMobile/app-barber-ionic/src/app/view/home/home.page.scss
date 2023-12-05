@@ -111,21 +111,11 @@ ion-list {
 }
 
 /*=====================================SEÇÃO PROFISSIONAIS================================*/
+
 .profissionais {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-  margin: 0 auto;
-  margin-left: 20px;
-}
-
-.slide {
   flex-direction: column;
-  margin-top: 15px;
-  margin-right: 20px;
-  margin-bottom: -15px;
+  align-items: center;
 }
 
 ion-avatar {

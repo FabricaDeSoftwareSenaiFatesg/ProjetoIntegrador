@@ -269,11 +269,14 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
     }
 
     public List<Reserva> consultarReservasPorProfissional(PesquisaReservasProfissional pesquisaReservasProfissional) {
-        return dao.getReservasByFuncionarioAndDataInicialBetweenAndStatusReservaEquals(
-                pesquisaReservasProfissional.getProfissional(),
-                DateUtil.zerarHoraData(pesquisaReservasProfissional.getData()),
-                DateUtil.ultimaHoraData(pesquisaReservasProfissional.getData()),
-                pesquisaReservasProfissional.getStatus());
+        if (dao.existsReservaByFuncionario(pesquisaReservasProfissional.getProfissional())) {
+            return dao.getReservasByFuncionarioAndDataInicialBetweenAndStatusReservaEquals(
+                    pesquisaReservasProfissional.getProfissional(),
+                    DateUtil.zerarHoraData(pesquisaReservasProfissional.getData()),
+                    DateUtil.ultimaHoraData(pesquisaReservasProfissional.getData()),
+                    pesquisaReservasProfissional.getStatus());
+        }
+        return new ArrayList<>();
     }
 
     public void cancelarReserva(Long id) {

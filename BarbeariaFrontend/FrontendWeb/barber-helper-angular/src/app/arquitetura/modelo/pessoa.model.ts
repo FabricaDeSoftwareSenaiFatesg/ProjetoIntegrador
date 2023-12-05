@@ -1,4 +1,5 @@
 import { Entidade } from './entidade.model';
+import { Imagem } from './imagem.model';
 
 export class Pessoa extends Entidade {
 
@@ -11,6 +12,8 @@ export class Pessoa extends Entidade {
   flagFuncionario: boolean = false;
 
   descricaoFuncionario: string = "";
+
+  imagemPerfil: Imagem = new Imagem();
 
   constructor() {
     super();
