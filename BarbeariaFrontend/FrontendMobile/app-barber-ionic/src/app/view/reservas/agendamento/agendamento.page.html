@@ -19,27 +19,18 @@
 <div class="fundoAgendamento">
   <ion-button class="botao1" size="small" id="open-modalServicos" expand="block">{{ servicosText | uppercase }}</ion-button>
 
-  <ion-modal #modalServicos trigger="open-modalServicos">
+  <ion-modal #modalServicos trigger="open-modalServicos" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
     <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button slot="start" (click)="fecharModalServicos()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-          </ion-buttons>
-          <ion-title>Serviços</ion-title>
-        </ion-toolbar>
+      <ion-content class="ion-padding">
+        <ion-searchbar (ionInput)="pesquisarServico($event)"></ion-searchbar>
 
-        <ion-toolbar>
-          <ion-searchbar (ionInput)="pesquisarServico($event)"></ion-searchbar>
-        </ion-toolbar>
-      </ion-header>
-
-      <ion-content color="light" class="ion-padding">
-        <ion-list id="modal-list" [inset]="true" *ngFor="let servico of servicosFiltrados">
-          <ion-item (click)="selecionarServico(servico)">
-            <ion-label>{{ getDescricaoServico(servico) }}</ion-label>
-          </ion-item>
-        </ion-list>
+        <div class="fundoModalServicos">
+          <ion-list id="modal-list" [inset]="true" *ngFor="let servico of servicosFiltrados">
+            <ion-item (click)="selecionarServico(servico)">
+              <ion-label>{{ getDescricaoServico(servico) }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
       </ion-content>
     </ng-template>
   </ion-modal>
@@ -48,15 +39,17 @@
 
   <ion-modal #modalProfissional trigger="open-modalProfissional" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
     <ng-template>
-      <ion-content>
-        <ion-list *ngFor="let profissional of profissionais">
-          <ion-item (click)="selecionarProfissional(profissional)">
-            <ion-avatar slot="start">
-              <ion-img [src]="obterConteudoFormatado(profissional.imagemPerfil)"></ion-img>
-            </ion-avatar>
-            <ion-label>{{ profissional.nome }}</ion-label>
-          </ion-item>
-        </ion-list>
+      <ion-content class="ion-padding">
+        <div class="fundoModalProfissional">
+          <ion-list class="modalProfissional" *ngFor="let profissional of profissionais">
+            <ion-item (click)="selecionarProfissional(profissional)">
+              <ion-avatar slot="start">
+                <ion-img [src]="obterConteudoFormatado(profissional.imagemPerfil)"></ion-img>
+              </ion-avatar>
+              <ion-label>{{ profissional.nome }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
       </ion-content>
     </ng-template>
   </ion-modal>
@@ -85,7 +78,7 @@
     <span *ngIf="dataSelecionada">Não possui horários disponíveis!</span>
   </ng-template>
 
-  <ion-modal #modalResumo trigger="open-modalResumo" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
+  <ion-modal #modalResumo trigger="open-modalResumo" [initialBreakpoint]="0.3" [breakpoints]="[0.5, 0.75]">
     <ng-template>
       <ion-content class="ion-padding">
         Serviço: {{ reserva.servicos[0].descricao }}<br>

@@ -54,3 +54,71 @@
   display: flex;
   justify-content: flex-end;
 }
+
+:host .calendar-days-of-week {
+  --ion-color-step-300: #35221a;
+}
+
+.ion-padding {
+  background-color: #ffeee1;
+  padding-inline-start: 30px;
+  padding-top: 50px;
+}
+
+ion-datetime {
+  --ion-color-step-300: #d18d60;
+  --ion-color-primary: #d18d60;
+  border-radius: 10px;
+  --ion-color-light: #35221a;
+  font-family: Poppins;
+  font-weight: 900;
+  font-size: 13px;
+  color: #ffeee1;
+  margin-top: 5px;
+}
+
+ion-modal {
+  --ion-background-color: #ffeee1;
+}
+
+ion-searchbar {
+  --background: #35221a;
+  margin-top: 20px;
+  --icon-color: #ffeee1;
+  --border-radius: 7px;
+  --placeholder-opacity: none;
+}
+
+ion-item {
+  --ion-item-background: #d18d60;
+  --ion-item-color: #ffeee1;
+  font-size: 15px;
+  font-weight: bold;
+  --inner-border-width: 0;
+}
+
+.fundoModalServicos {
+  background-color: #35221a;
+  margin-top: 15px;
+  height: 37%;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-top: 10px;
+  border-radius: 7px;
+}
+
+.fundoModalProfissional {
+  background-color: #35221a;
+  margin-top: 15px;
+  height: 45%;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-top: 20px;
+  border-radius: 7px;
+}
+
+.modalProfissional {
+  width: 89%;
+  border-radius: 7px;
+  margin-left: 22px;
+}

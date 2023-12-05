@@ -96,10 +96,6 @@ export class AgendamentoPage implements OnInit {
     }
   }
 
-  fecharModalServicos() {
-    this.modalServicos.dismiss();
-  }
-
   selecionarProfissional(profissional: Pessoa) {
     this.profissionalText = profissional.nome;
     this.filtroHorarios.profissional = profissional;
