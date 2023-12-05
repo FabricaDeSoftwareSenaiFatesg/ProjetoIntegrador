@@ -79,9 +79,9 @@
         <ion-icon class= "icones" slot="start" name="calendar"></ion-icon>
         <ion-label class="texto">Histórico</ion-label>
       </ion-item>
-      <div class="ion-padding" slot="content">
 
-        <ion-datetime presentation="month-year" [(ngModel)]="dataSelecionada"></ion-datetime>
+      <div class="ion-padding" slot="content">
+        <ion-datetime class="texto" presentation="month-year" [(ngModel)]="dataSelecionada"></ion-datetime>
         <ion-button class="botao1" size="small"  fill="solid" expand="block" (click)="consultarHistorico()">Consultar Histórico</ion-button>
 
         <ion-label class="texto2" *ngIf="reservasPerfil.length === 0">Você não possui serviços no dia consultado!</ion-label>
@@ -96,7 +96,6 @@
             </ion-item>
           </ion-list>
         </div>
-
       </div>
     </ion-accordion>
   </ion-accordion-group>
