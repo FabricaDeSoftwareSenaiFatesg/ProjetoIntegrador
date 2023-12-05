@@ -1,14 +1,19 @@
 <ion-header>
   <ion-toolbar class="menu">
-    <ion-buttons slot="primary">
-      <ion-button (click)="deslogar()">
-        <ion-icon class="iconesMenu" size="large" name="log-in-outline"></ion-icon>
-      </ion-button>
-      <ion-button slot="start" (click)="voltar()">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="primary" class="botoes-container">
+      <div class="botoes-esquerda">
+        <ion-button slot="start" (click)="voltar()">
+          <ion-icon class="iconesMenu" name="chevron-back-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="botoes-direita">
+        <ion-button (click)="deslogar()">
+          <ion-icon class="iconesMenu" size="large" name="log-in-outline"></ion-icon>
+        </ion-button>
+      </div>
     </ion-buttons>
   </ion-toolbar>
+  
 </ion-header>
 
 <div class="fundoAgendamento">
