@@ -58,7 +58,6 @@ export class LoginPage {
     if (!this.camposValidos(this.usuario)) return;
 
     this.usuario.tipo = TipoUsuarioEnum.CLIENTE;
-
     this.usuarioService.inserirUsuarioNoServidorDeAutenticacao(this.usuario).subscribe(() => {
       this.usuarioService.salvar(this.usuario).subscribe(() => {
         this.modalCadastro.dismiss();
