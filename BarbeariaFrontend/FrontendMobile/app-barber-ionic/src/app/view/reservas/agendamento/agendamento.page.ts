@@ -220,4 +220,17 @@ export class AgendamentoPage implements OnInit {
     return 'data:' + imagem.tipo + ';base64,' + imagem.conteudo;
 
   }
+
+  getHorariosPorLinhas(): any[] {
+    const horariosPorLinhas = [];
+    const itemsPorLinha = 3;
+
+    for (let i = 0; i < this.horarios.length; i += itemsPorLinha) {
+      const linha = this.horarios.slice(i, i + itemsPorLinha);
+      horariosPorLinhas.push(linha);
+    }
+
+    return horariosPorLinhas;
+  }
+
 }
