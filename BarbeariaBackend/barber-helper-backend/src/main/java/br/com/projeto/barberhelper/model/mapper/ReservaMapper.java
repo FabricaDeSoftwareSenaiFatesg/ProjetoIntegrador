@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.projeto.barberhelper.model.Reserva;
 import br.com.projeto.barberhelper.model.dto.listagem.ReservaListagemDTO;
 import br.com.projeto.barberhelper.utils.DateUtil;
+import br.com.projeto.barberhelper.utils.NullUtil;
 
 public class ReservaMapper {
 
@@ -18,7 +19,9 @@ public class ReservaMapper {
         reservaListagemDTO.setInicio(DateUtil.getStringHorario(DateUtil.getCalendarDate(reserva.getDataInicial())));
         reservaListagemDTO.setFim(DateUtil.getStringHorario(DateUtil.getCalendarDate(reserva.getDataFim())));
         reservaListagemDTO.setStatus(reserva.getStatusReserva().toString());
-        reservaListagemDTO.setServicoNome(reserva.getServicos().get(0).getDescricao());
+        if (NullUtil.isNotNullOrEmpty(reserva.getServicos())) {
+            reservaListagemDTO.setServicoNome(reserva.getServicos().get(0).getDescricao());
+        }
         return reservaListagemDTO;
     }
 

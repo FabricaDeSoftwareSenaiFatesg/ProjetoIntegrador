@@ -192,10 +192,10 @@ public class DateUtil {
 
 	public static String getStringData(Date data) {
 		Calendar calendar = getCalendarDate(data);
-		return (calendar.get(Calendar.DATE) < 10 ? "0" + calendar.get(Calendar.DATE) : calendar.get(Calendar.DATE))
-				+ "/"
-				+ (calendar.get(Calendar.MONTH) < 10 ? "0" + calendar.get(Calendar.MONTH) : calendar.get(Calendar.MONTH))
-				+ "/"
-				+ calendar.get(Calendar.YEAR);
+		int dia = calendar.get(Calendar.DATE);
+		int mes = calendar.get(Calendar.MONTH) + 1;
+		int ano = calendar.get(Calendar.YEAR);
+
+		return (dia < 10 ? "0" + dia : dia) + "/" + (mes < 10 ? "0" + mes : mes) + "/" + ano;
 	}
 }

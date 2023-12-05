@@ -166,7 +166,7 @@ export class AgendamentoPage implements OnInit {
     let qntHorariosNecessarios = Math.ceil(tempoTotalServicos/30);
     let horasFinais = Math.floor(qntHorariosNecessarios * 30 / 60);
     let minutosFinais = qntHorariosNecessarios * 30 % 60;
-    let dataFinal = new Date();
+    let dataFinal = new Date(dataInicial);
     dataFinal.setHours(dataInicial.getHours() + horasFinais, dataInicial.getMinutes() + minutosFinais, 0, 0);
     return dataFinal;
   }
