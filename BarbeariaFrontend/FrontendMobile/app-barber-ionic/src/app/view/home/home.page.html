@@ -85,19 +85,19 @@
 
   <section>
     <h1 class="titulos">PROFISSIONAIS</h1>
-    <p-carousel [value]="profissionais" [numVisible]="4" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions">
-      <ng-template let-profissional pTemplate="item">
+    <p-carousel class="carossel" [value]="profissionais" [numVisible]="4" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+      <ng-template class="carossel"  let-profissional pTemplate="item">
         <div class="profissionais">
           <ion-avatar>
             <img [src]="obterConteudoFormatado(profissional.imagemPerfil)" />
+            <p class="text">{{profissional.nomeFormatadoDashBoard}}</p>
           </ion-avatar>
-          <p class="text">{{profissional.nomeFormatadoDashBoard}}</p>
         </div>
       </ng-template>
     </p-carousel>
   </section>
 
-  <div class="divisoria-marrom"></div>
+  <div class="divisoria-marrom" style="margin-top: 10px;"></div>
 
   <section>
     <h1 class="titulos">SOCIAL</h1>
