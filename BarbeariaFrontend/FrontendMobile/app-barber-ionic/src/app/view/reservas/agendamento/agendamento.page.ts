@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonModal, NavController} from "@ionic/angular";
+import {IonModal, NavController, MenuController} from "@ionic/angular";
 import {Servico} from "../../../../arquitetura/modelo/servico.model";
 import {Pessoa} from "../../../../arquitetura/modelo/pessoa.model";
 import {FiltroHorarios} from "../../../../arquitetura/modelo/filtro-horarios.model";
@@ -23,6 +23,7 @@ export class AgendamentoPage implements OnInit {
   @ViewChild('modalResumo', { static: true }) modalResumo!: IonModal;
 
   constructor(
+    private menuCtrl: MenuController,
     private navigation: NavController,
     private servicoService: ServicoService,
     private pessoaService: PessoaService,
@@ -187,6 +188,16 @@ export class AgendamentoPage implements OnInit {
 
   voltar() {
     this.navigation.navigateRoot("/tabs/reserva")
+  }
+
+  deslogar() {
+    this.usuarioService.logout().subscribe(() => {
+      if (localStorage.getItem("ads_access_token") !== null) {
+        localStorage.removeItem("ads_access_token");
+      }
+      this.navigation.navigateRoot("login");
+    });
+    this.menuCtrl.open('end');
   }
 
   obterConteudoFormatado(imagem: Imagem) {

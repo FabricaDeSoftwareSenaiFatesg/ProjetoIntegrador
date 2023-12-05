@@ -47,7 +47,7 @@
           </ion-row>
         </section>
 
-        <ion-button class="botao1" style="margin-top: 30px; width: 50%; margin-left: 90px;" size="small" fill="solid" expand="block" (click)="salvar()" *ngIf="!visualizar">Salvar</ion-button>
+        <ion-button class="botao1" style="margin-top: 30px; width: 50%; margin-left: 90px;" size="small" fill="solid" expand="block" (click)="salvar()" *ngIf="!visualizar">SALVAR</ion-button>
       </div>
 
     </ion-accordion>
@@ -82,7 +82,7 @@
 
       <div class="ion-padding" slot="content">
         <ion-datetime class="texto" presentation="month-year" [(ngModel)]="dataSelecionada"></ion-datetime>
-        <ion-button class="botao1" size="small"  fill="solid" expand="block" (click)="consultarHistorico()">Consultar Histórico</ion-button>
+        <ion-button class="botao1" size="small"  fill="solid" expand="block" (click)="consultarHistorico()">CONSULTAR HISTÓRICO</ion-button>
 
         <ion-label class="texto2" *ngIf="reservasPerfil.length === 0">Você não possui serviços no dia consultado!</ion-label>
 

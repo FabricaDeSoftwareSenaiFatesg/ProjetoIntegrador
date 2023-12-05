@@ -1,13 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-button slot="start" (click)="voltar()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-    <ion-title>agendamento</ion-title>
+<ion-header>
+  <ion-toolbar class="menu">
+    <ion-buttons slot="primary">
+      <ion-button (click)="deslogar()">
+        <ion-icon class="iconesMenu" size="large" name="log-in-outline"></ion-icon>
+      </ion-button>
+      <ion-button slot="start" (click)="voltar()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" [fullscreen]="true">
-
-  <ion-button id="open-modalServicos" expand="block">{{ servicosText }}</ion-button>
+<div class="fundoAgendamento">
+  <ion-button class="botao1" size="small" id="open-modalServicos" expand="block">{{ servicosText | uppercase }}</ion-button>
 
   <ion-modal #modalServicos trigger="open-modalServicos">
     <ng-template>
@@ -16,7 +21,6 @@
           <ion-buttons slot="start">
             <ion-button slot="start" (click)="fecharModalServicos()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
           </ion-buttons>
-
           <ion-title>Serviços</ion-title>
         </ion-toolbar>
 
@@ -35,12 +39,11 @@
     </ng-template>
   </ion-modal>
 
-  <ion-button id="open-modalProfissional" expand="block">{{ profissionalText }}</ion-button>
+  <ion-button class="botao1" size="small" id="open-modalProfissional" expand="block">{{ profissionalText | uppercase }}</ion-button>
 
   <ion-modal #modalProfissional trigger="open-modalProfissional" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
     <ng-template>
       <ion-content>
-
         <ion-list *ngFor="let profissional of profissionais">
           <ion-item (click)="selecionarProfissional(profissional)">
             <ion-avatar slot="start">
@@ -49,20 +52,17 @@
             <ion-label>{{ profissional.nome }}</ion-label>
           </ion-item>
         </ion-list>
-
       </ion-content>
     </ng-template>
   </ion-modal>
 
-  <ion-button id="open-modalData" expand="block">{{ dataText }}</ion-button>
+  <ion-button class="botao1" size="small" id="open-modalData" expand="block">{{ dataText | uppercase }}</ion-button>
 
   <ion-modal #modalData trigger="open-modalData" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
     <ng-template>
-
       <div class="ion-padding" slot="content">
         <ion-datetime (ionChange)="selecionarData()" presentation="date" [(ngModel)]="dataSelecionada"></ion-datetime>
       </div>
-
     </ng-template>
   </ion-modal>
 
@@ -87,10 +87,8 @@
         Barbeiro: {{ reserva.funcionario.nome }}<br>
         Data e Hora: {{ reserva.dataHoraText }}<br>
         Total: {{ reserva.totalText }}<br>
-
         <ion-button class="ion-margin" shape="round" expand="full" (click)="confirmar()">Confirmar!</ion-button>
       </ion-content>
     </ng-template>
   </ion-modal>
-
-</ion-content>
+</div>
