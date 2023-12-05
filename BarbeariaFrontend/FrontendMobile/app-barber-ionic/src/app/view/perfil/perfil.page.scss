@@ -116,9 +116,11 @@ ion-accordion-group {
 }
 
 ion-datetime {
-  --ion-color-step-300: #35221a;
-  --ion-color-light-rgb: #ad774c;
+  --ion-color-light: #ffeee1;
+  --ion-color-light-rgb: #ffeee1;
   border-radius: 10px;
+  --ion-color-step-150: #ad774c;
+  color: #35221a !important;
 }
 
 ion-item {
