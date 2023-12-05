@@ -76,6 +76,8 @@ export class AgendamentoPage implements OnInit {
     this.servicosText = servico.descricao;
     this.filtroHorarios.servicos.push(servico);
     this.modalServicos.dismiss();
+
+    this.consultarHorarios();
   }
 
   getDescricaoServico(servico: Servico) {
@@ -100,20 +102,37 @@ export class AgendamentoPage implements OnInit {
     this.profissionalText = profissional.nome;
     this.filtroHorarios.profissional = profissional;
     this.modalProfissional.dismiss();
+
+    this.consultarHorarios();
   }
 
   selecionarData() {
-    this.dataText = this.dataSelecionada?.toString();
+    this.dataText = this.getStringData(new Date(this.dataSelecionada!));
     this.filtroHorarios.data = this.dataSelecionada;
     this.modalData.dismiss();
 
     this.consultarHorarios();
   }
 
+  getStringData(data: Date) {
+    const dia = String(data.getDate()).padStart(2, '0');
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const ano = String(data.getFullYear());
+    return `${dia}/${mes}/${ano}`;
+  }
+
   consultarHorarios() {
-    this.agendamentoService.consultarHorarios(this.filtroHorarios).subscribe(response => {
-      this.horarios = response.entity;
-    });
+    if (this.filtroCompleto()) {
+      this.agendamentoService.consultarHorarios(this.filtroHorarios).subscribe(response => {
+        this.horarios = response.entity;
+      });
+    }
+  }
+
+  filtroCompleto() {
+    return this.filtroHorarios.data
+      && this.filtroHorarios.profissional
+      && this.filtroHorarios.servicos.length > 0;
   }
 
   abrirModalResumo(horario: string) {
