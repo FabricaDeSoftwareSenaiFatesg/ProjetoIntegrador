@@ -1,20 +1,37 @@
-<ion-content [fullscreen]="true">
+<ion-header>
+  <ion-toolbar class="menu">
+    <ion-buttons slot="primary" class="botoes-container">
+      <div class="botoes-esquerda">
+        <ion-button slot="start" (click)="voltar()">
+          <ion-icon class="iconesMenu" name="chevron-back-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="botoes-direita">
+        <ion-button (click)="deslogar()">
+          <ion-icon class="iconesMenu" size="large" name="log-in-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="fundoReserva">
   <ion-card>
     <ion-card-header>
       <ion-card-title>
         {{ dataFormatada }}
       </ion-card-title>
-      <ion-card-subtitle>
+      <ion-card-subtitle class="texto">
         horário: {{ horarioInicialFormatado }} - {{ horarioFinalFormatado }}
       </ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content class="texto">
       Barbeiro: {{ reserva?.funcionario?.nome }} <br>
       Serviço: {{ servico.descricao }} <br>
       Tempo: {{ servico.tempo }} <br><br>
-      Total: {{ servico.valor }}
+      Total: R$ {{ servico.valor }}
     </ion-card-content>
 
-    <ion-button (click)="cancelarReserva()">Cancelar Reserva</ion-button>
+    <ion-button class="botao1" size="small" (click)="cancelarReserva()">CANCELAR RESERVA</ion-button>
   </ion-card>
-</ion-content>
+</div>

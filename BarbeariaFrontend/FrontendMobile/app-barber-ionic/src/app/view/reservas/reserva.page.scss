@@ -38,3 +38,27 @@ ion-fab {
     --ion-color-primary: #d18d60;
     --ion-color-primary-contrast: #35221a;
 }
+
+ion-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --ion-item-background: #ffeee1;
+    --inner-border-width: 0;
+}
+
+ion-card {
+    --ion-card-background: #35221a;
+    --inner-border-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.texto {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 15px;
+    color: #ffffff;
+    margin-top: 7px;
+}

@@ -3,7 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {AgendamentoService} from "../../../../arquitetura/services/agendamento.service";
 import {ReservaModel} from "../../../../arquitetura/modelo/reserva.model";
 import {Servico} from "../../../../arquitetura/modelo/servico.model";
-import {NavController} from "@ionic/angular";
+import {NavController,  MenuController} from "@ionic/angular";
+import {UsuarioService} from "../../../../arquitetura/services/usuario.service";
 
 @Component({
   selector: 'app-consultar-reserva',
@@ -21,9 +22,11 @@ export class ConsultarReservaPage implements OnInit {
   horarioFinalFormatado: string = '';
 
   constructor(
+    private menuCtrl: MenuController,
     private activatedRoute: ActivatedRoute,
     private navigation: NavController,
-    private agendamentoService: AgendamentoService
+    private agendamentoService: AgendamentoService,
+    private usuarioService: UsuarioService
   ) { }
 
   ngOnInit() {
@@ -61,5 +64,15 @@ export class ConsultarReservaPage implements OnInit {
 
   voltar() {
     this.navigation.navigateRoot("/tabs/reserva")
+  }
+
+  deslogar() {
+    this.usuarioService.logout().subscribe(() => {
+      if (localStorage.getItem("ads_access_token") !== null) {
+        localStorage.removeItem("ads_access_token");
+      }
+      this.navigation.navigateRoot("login");
+    });
+    this.menuCtrl.open('end');
   }
 }

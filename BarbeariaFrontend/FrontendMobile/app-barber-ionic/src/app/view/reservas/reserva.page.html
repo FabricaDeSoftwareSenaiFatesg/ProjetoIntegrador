@@ -4,14 +4,14 @@
       <ion-item>
         <ion-card (click)="consultarReserva(agendamento.id)">
           <ion-card-header>
-            <ion-card-title>
+            <ion-card-title style="margin-left: 15px; margin-top: 10px;">
               {{agendamento.data}}
             </ion-card-title>
-            <ion-card-subtitle>
+            <ion-card-subtitle class="texto">
               horário: {{agendamento.inicio}} - {{agendamento.fim}}
             </ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content>
+          <ion-card-content class="texto">
             Serviço: {{agendamento.servicoNome}}
           </ion-card-content>
         </ion-card>
