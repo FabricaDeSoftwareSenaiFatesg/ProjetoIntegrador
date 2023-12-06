@@ -84,10 +84,8 @@
         <ion-datetime class="texto" presentation="month-year" [(ngModel)]="dataSelecionada"></ion-datetime>
         <ion-button class="botao1" size="small"  fill="solid" expand="block" (click)="consultarHistorico()">CONSULTAR HISTÓRICO</ion-button>
 
-        <ion-label class="texto2" *ngIf="reservasPerfil.length === 0">Você não possui serviços no dia consultado!</ion-label>
-
-        <div *ngIf="reservasPerfil.length > 0">
-          <ion-list *ngFor="let reservaPerfil of reservasPerfil" >
+        <div *ngIf="reservasPerfil?.length! > 0; else historicoVazio">
+          <ion-list *ngFor="let reservaPerfil of reservasPerfil">
             <ion-item>
               <ion-thumbnail slot="start">
                 <img class="imagem" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
@@ -96,6 +94,11 @@
             </ion-item>
           </ion-list>
         </div>
+
+        <ng-template #historicoVazio>
+          <ion-label class="texto2" *ngIf="reservasPerfil?.length! === 0">Você não possui serviços no dia consultado!</ion-label>
+        </ng-template>
+
       </div>
     </ion-accordion>
   </ion-accordion-group>

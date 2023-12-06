@@ -32,8 +32,8 @@ export class PerfilPage {
   usuarioLogado!: UsuarioModel;
   quantidadeMaximaReservas = 8;
   visualizar = true;
-  reservasPerfil: ReservaListagemModel[] = [];
-  dataSelecionada!: string;
+  reservasPerfil!: ReservaListagemModel[];
+  dataSelecionada: string = new Date().toISOString();
   selectedImage: any;
   funcionario: boolean = false;
 

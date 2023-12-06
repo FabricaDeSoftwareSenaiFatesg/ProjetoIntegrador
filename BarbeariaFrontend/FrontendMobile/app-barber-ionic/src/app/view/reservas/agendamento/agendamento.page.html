@@ -87,7 +87,7 @@
         Serviço: {{ reserva.servicos[0].descricao }}<br>
         Barbeiro: {{ reserva.funcionario.nome }}<br>
         Data e Hora: {{ reserva.dataHoraText }}<br>
-        Total: {{ reserva.totalText }}<br>
+        Total: R${{ reserva.totalText }}<br>
         <ion-button class="ion-margin" shape="round" expand="full" (click)="confirmar()">Confirmar!</ion-button>
       </ion-content>
     </ng-template>
