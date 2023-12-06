@@ -128,13 +128,13 @@ Pagamento;
     <img src="docs/Imagens/DiagramaBancoDeDados.png" alt="Diagrama de Classes" height="700" width="450"/>
 </div>
 <br>
-<h3> 2 - Arquitetura do Software </h2>
+<h3> 2 - Arquitetura do Software </h3>
 <p> A arquitetura de software de uma aplicação é o conjunto de decisões de design que definem como os diferentes componentes do sistema se relacionam e interagem entre si. Ela é responsável por garantir que a aplicação seja escalável, segura e capaz de lidar com as demandas dos usuários de forma eficiente. A documentação técnica da arquitetura de software é uma parte fundamental do processo de desenvolvimento, pois ajuda a equipe a entender como o sistema funciona e como cada componente se relaciona com os demais. Neste documento, serão descritos os principais componentes da arquitetura da aplicação, como eles se comunicam e quais são as suas responsabilidades. Além disso, serão apresentadas as principais tecnologias utilizadas na implementação da arquitetura, assim como as decisões de design que levaram à escolha dessas tecnologias.</p>
 
 <div align="center">
     <img src="docs/Imagens/DiagramaArquitetura.png" alt="Diagrama de Arquitetura" />
 </div>
-<h4> 1.2 - Tecnologias da implementação </h2>
+<h4> 2.1 - Tecnologias da implementação </h2>
 <br>
 <p>A definição das tecnologias ao implementar um aplicativo web é crucial para garantir eficiência, escalabilidade, segurança e uma boa experiência do usuário. A escolha adequada das tecnologias alinhadas aos requisitos do projeto, integração com outros sistemas, segurança avançada e interfaces responsivas é fundamental para o sucesso do desenvolvimento. Além disso, a seleção de tecnologias populares e bem suportadas agiliza o processo, permite maior interoperabilidade e facilita a resolução de problemas. Dentro deste contexto, definiu-se o uso das tecnologias abaxio para que se alcance com êxito a escalabilidade, eficiência, segurança e usabilidade do aplicativo web em desenvolvimento.</p>
 <br>
@@ -145,6 +145,80 @@ Pagamento;
 <li><b>Spring Boot:</b> Spring Boot é um framework de desenvolvimento de aplicativos Java que simplifica a criação de aplicativos autônomos e prontos para produção. Ele fornece uma configuração rápida e automática de componentes comuns do ecossistema Spring, permitindo que os desenvolvedores se concentrem na lógica de negócios em vez de configurar e integrar diferentes camadas do aplicativo.</li>
 <li><b>PostgreSQL:</b> PostgreSQL é um sistema de gerenciamento de banco de dados relacional de código aberto e altamente escalável. Ele oferece suporte a recursos avançados, como consultas complexas, transações ACID, replicação e extensibilidade. O PostgreSQL é amplamente utilizado em aplicações que exigem um banco de dados confiável e poderoso, fornecendo uma sólida base para armazenamento e manipulação de dados.</li>
 </ul>
+<br>
+<h3> 3 - Divisão de tarefas </h3>
+<p> A baixo está descrito nossa divisão de tarefas e prazos feitos por cada integrante do grupo:</p>
+<br>
+<br>
+<div align="center">
+<table>
+    <thead>
+    <tr>
+        <th>DEMANDA</>
+        <th>RESPONSÁVEL</th>
+        <th>PRAZO</>
+        <th>SITUAÇÃO</>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Definição do Escopo do Projeto</b></td>
+            <td><b>Eduardo</b></td>
+            <td>01/09/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Inicializar Projeto</b></td>
+            <td><b>Eduardo</b></td>
+            <td>08/09/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Configuração do Ambiente de Desenvolvimento</b></td>
+            <td><b>João Paulo</b></td>
+            <td>10/09/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Ajustes da API Java (Spring Boot)</b></td>
+            <td><b>Magno</b></td>
+            <td>25/09/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Desenvolvimento das Telas Iniciais no Ionic</b></td>
+            <td><b>Diogo</b></td>
+            <td>15/10/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Integração API - Frontend</b></td>
+            <td><b>João Paulo e Magno</b></td>
+            <td>30/10/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Desenvolvimento do Design de Tela</b></td>
+            <td><b>Diogo</b></td>
+            <td>20/11/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Testes e Correções de detalhes</b></td>
+            <td><b>Todos</b></td>
+            <td>01/12/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+        <tr>
+            <td><b>Videos e prepação de pitch</b></td>
+            <td><b>Todos</b></td>
+            <td>06/12/2023</td>
+            <td>FINALIZADO</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<br>
 <br>
 <h3> Referências </h3>
 <br>
