@@ -1,28 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-button slot="start" (click)="voltar()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-    <ion-title>consultar-reserva-profissional</ion-title>
+<ion-header>
+  <ion-toolbar class="menu">
+    <ion-buttons slot="primary" class="botoes-container">
+      <div class="botoes-esquerda">
+        <ion-button slot="start" (click)="voltar()">
+          <ion-icon class="iconesMenu" name="chevron-back-outline"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="botoes-direita">
+        <ion-button (click)="deslogar()">
+          <ion-icon class="iconesMenu" size="large" name="log-in-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<div class="fundoReserva">
   <ion-card>
     <ion-card-header>
       <ion-card-title>
         {{ reserva?.cliente?.nome }}
       </ion-card-title>
-      <ion-card-subtitle>
+      <ion-card-subtitle class="texto">
         {{ dataFormatada }} <br>
         horário: {{ horarioInicialFormatado }} - {{ horarioFinalFormatado }}
       </ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content class="texto">
       Serviço: {{ servico.descricao }} <br>
-      Tempo: {{ servico.tempo }} <br><br>
-      Total: {{ servico.valor }}
+      Tempo: {{ servico.tempo }} minutos<br><br>
+      Total: R${{ servico.valor }},00
     </ion-card-content>
 
-    <ion-button (click)="executarReserva()">Executar Reserva</ion-button>
-    <ion-button (click)="cancelarReserva()">Cancelar Reserva</ion-button>
+    <ion-button class="botao1" size="small" (click)="executarReserva()">EXECUTAR RESERVA</ion-button>
+    <ion-button class="botao1" size="small" (click)="cancelarReserva()">CANCELAR RESERVA</ion-button>
   </ion-card>
-</ion-content>
+</div>

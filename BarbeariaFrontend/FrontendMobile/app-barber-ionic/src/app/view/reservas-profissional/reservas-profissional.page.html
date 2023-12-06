@@ -1,44 +1,41 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>reservas-profissional</ion-title>
-  </ion-toolbar>
-
-  <div style="display: inline-block; margin-right: 10px">
-    <ion-input type="date" [(ngModel)]="data"></ion-input>
-  </div>
-
-  <div style="display: inline-block; margin-right: 10px">
-    <ion-list>
-      <ion-item>
-        <ion-select [(ngModel)]="status" interface="popover">
-          <ion-select-option value="RESERVADO">Reservado</ion-select-option>
-          <ion-select-option value="FINALIZADO">Finalizado</ion-select-option>
-          <ion-select-option value="CANCELADO">Cancelado</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
-  </div>
-
-  <div style="display: inline-block">
-    <ion-button (click)="consultarReservas()"><ion-icon name="search"></ion-icon></ion-button>
-  </div>
-</ion-header>
-
 <div class="fundo">
+
+  <ion-header>
+    <div style="display: inline-block; margin-right: 10px">
+      <ion-input type="date" [(ngModel)]="data"></ion-input>
+    </div>
+
+    <div style="display: inline-block; margin-right: 10px">
+      <ion-list>
+        <ion-item>
+          <ion-select [(ngModel)]="status" interface="popover">
+            <ion-select-option value="RESERVADO">Reservado</ion-select-option>
+            <ion-select-option value="FINALIZADO">Finalizado</ion-select-option>
+            <ion-select-option value="CANCELADO">Cancelado</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div style="display: inline-block">
+      <ion-button (click)="consultarReservas()"><ion-icon name="search"></ion-icon></ion-button>
+    </div>
+  </ion-header>
+
   <div class="cards-agendamentos" *ngIf="agendamentos?.length !== 0">
 
     <ion-list *ngFor="let agendamento of agendamentos" [inset]="true">
       <ion-item>
         <ion-card (click)="consultarReserva(agendamento.id)">
           <ion-card-header>
-            <ion-card-title>
+            <ion-card-title style="margin: auto; padding-top: 10px">
               {{agendamento.clienteNome}}
             </ion-card-title>
-            <ion-card-subtitle>
+            <ion-card-subtitle class="texto">
               horário: {{agendamento.inicio}} - {{agendamento.fim}}
             </ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content>
+          <ion-card-content class="texto">
             Serviço: {{agendamento.servicoNome}}
           </ion-card-content>
         </ion-card>
@@ -46,5 +43,5 @@
     </ion-list>
 
   </div>
-</div>
 
+</div>

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ReservaModel} from "../../../../arquitetura/modelo/reserva.model";
 import {Servico} from "../../../../arquitetura/modelo/servico.model";
 import {ActivatedRoute} from "@angular/router";
-import {NavController} from "@ionic/angular";
+import {MenuController, NavController} from "@ionic/angular";
 import {AgendamentoService} from "../../../../arquitetura/services/agendamento.service";
+import {UsuarioService} from "../../../../arquitetura/services/usuario.service";
 
 @Component({
   selector: 'app-consultar-reserva-profissional',
@@ -23,7 +24,9 @@ export class ConsultarReservaProfissionalPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private navigation: NavController,
-    private agendamentoService: AgendamentoService
+    private agendamentoService: AgendamentoService,
+    private usuarioService: UsuarioService,
+    private menuCtrl: MenuController,
   ) { }
 
   ngOnInit() {
@@ -67,5 +70,15 @@ export class ConsultarReservaProfissionalPage implements OnInit {
 
   voltar() {
     this.navigation.navigateRoot("/tabs/reserva-profissional")
+  }
+
+  deslogar() {
+    this.usuarioService.logout().subscribe(() => {
+      if (localStorage.getItem("ads_access_token") !== null) {
+        localStorage.removeItem("ads_access_token");
+      }
+      this.navigation.navigateRoot("login");
+    });
+    this.menuCtrl.open('end');
   }
 }
