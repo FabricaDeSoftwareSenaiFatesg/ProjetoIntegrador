@@ -52,28 +52,6 @@
 
     </ion-accordion>
 
-    <!--<ion-accordion value="second" *ngIf="usuarioLogado && !usuarioLogado.pessoa.flagFuncionario">
-      <ion-item slot="header" color="light">
-        <ion-icon class= "icones" slot="start" name="pricetags"></ion-icon>
-        <ion-label class="texto">Fidelidade</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <ion-label class="texto2" *ngIf="reservasPerfil.length === 0">Você não possui serviços no histórico para o pacote de fidelidade!</ion-label>
-
-        <ion-list *ngFor="let reservaPerfil of reservasPerfil">
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <img class="imagem" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg"/>
-            </ion-thumbnail>
-            <ion-label class="texto2">{{reservaPerfil.servico.descricao}} {{" - "}} {{reservaPerfil.data | date : 'dd/MM HH:mm'}}</ion-label>
-          </ion-item>
-        </ion-list>
-
-        <ion-button class="botao1" size="small" fill="solid" expand="block" (click)="resgatarRecompensa()" *ngIf="reservasPerfil.length === quantidadeMaximaReservas">Resgatar Recompensa</ion-button>
-
-      </div>
-    </ion-accordion>-->
-
     <ion-accordion value="third" *ngIf="usuarioLogado && !funcionario">
       <ion-item slot="header" color="light">
         <ion-icon class= "icones" slot="start" name="calendar"></ion-icon>

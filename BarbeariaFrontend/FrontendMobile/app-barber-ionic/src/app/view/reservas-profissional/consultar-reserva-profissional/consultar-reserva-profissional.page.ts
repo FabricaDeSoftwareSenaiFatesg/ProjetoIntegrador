@@ -65,10 +65,6 @@ export class ConsultarReservaProfissionalPage implements OnInit {
     });
   }
 
-  resgatarFidelidade() {
-    console.log("resgatado com sucesso!")
-  }
-
   voltar() {
     this.navigation.navigateRoot("/tabs/reserva-profissional")
   }

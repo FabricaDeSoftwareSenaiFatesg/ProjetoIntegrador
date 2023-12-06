@@ -319,8 +319,9 @@ public class ReservaServiceImpl extends ServiceGenerico<Long, Reserva> implement
 
         Predicate predicateCliente = builder.equal(rootPessoa.get("id"), idPessoa);
         Predicate predicateMesAno = obterPredicateMesAno(builder, root, mes, ano);
+        Predicate predicateStatus = builder.equal(root.get("statusReserva"), StatusReservaEnum.FINALIZADO);
 
-        query.where(builder.and(predicateCliente, predicateMesAno))
+        query.where(builder.and(predicateCliente, predicateMesAno, predicateStatus))
                 .orderBy(builder.desc(root.get("dataInicial")));
 
         List<Reserva> reservas = this.executeQueryAndTransforResult(query, Reserva.class);

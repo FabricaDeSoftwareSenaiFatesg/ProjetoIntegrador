@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
 import {AgendamentoService} from "../../../arquitetura/services/agendamento.service";
 import {UsuarioService} from "../../../arquitetura/services/usuario.service";
@@ -8,7 +8,7 @@ import {UsuarioService} from "../../../arquitetura/services/usuario.service";
   templateUrl: 'reserva.page.html',
   styleUrls: ['reserva.page.scss']
 })
-export class ReservaPage {
+export class ReservaPage implements OnInit {
 
   agendamentos!: any[];
 

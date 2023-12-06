@@ -65,7 +65,7 @@
 
   <ion-button [disabled]="!filtroCompleto()" class="botao1" size="small" id="open-modalHorarios" expand="block">HORÁRIOS</ion-button>
 
-  <ion-modal #modalHorarios trigger="open-modalHorarios" [initialBreakpoint]="0.63" [breakpoints]="[0.5, 0.75]">
+  <ion-modal #modalHorarios trigger="open-modalHorarios" [initialBreakpoint]="0.75" [breakpoints]="[0.5, 0.75]">
     <div class="modalHorarios" *ngIf="horarios?.length! > 0; else horariosEmpty">
       <ng-container *ngFor="let horarios of getHorariosPorLinhas()">
         <ion-row>
