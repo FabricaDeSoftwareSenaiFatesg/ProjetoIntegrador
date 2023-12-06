@@ -63,7 +63,15 @@
     </ng-template>
   </ion-modal>
 
-  <div *ngIf="horarios?.length! > 0; else horariosEmpty">
+  <ion-button class="botao1" size="small" id="open-modalData" expand="block">HORÁRIOS</ion-button>
+
+  <!-- CRIAR AQUI O MODAL HORÁRIOS E JOGAR A DIV CLASS modalHorarios pra cá -->
+
+  <!-- <ion-modal #modalData trigger="open-modalData" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
+
+  </ion-modal> -->
+
+  <div class="modalHorarios" *ngIf="horarios?.length! > 0; else horariosEmpty">
     <ion-list>
       <ng-container *ngFor="let horarios of getHorariosPorLinhas()">
         <ion-row>
