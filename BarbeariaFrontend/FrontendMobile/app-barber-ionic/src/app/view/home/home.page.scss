@@ -122,6 +122,20 @@ ion-list {
   height: 10px;
 }
 
+:host ::ng-deep .p-carousel .p-carousel-indicators {
+  padding: 0 !important;
+}
+
+:host ::ng-deep .p-carousel .p-carousel-content .p-carousel-prev,
+:host ::ng-deep .p-carousel .p-carousel-content .p-carousel-next {
+  color: #ad774c !important;
+}
+
+:host ::ng-deep .p-carousel .p-carousel-content .p-carousel-prev,
+:host ::ng-deep .p-carousel .p-carousel-content .p-carousel-next {
+  width: 4rem !important;
+}
+
 ion-avatar {
   width: 60px;
   height: 60px;

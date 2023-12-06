@@ -1,6 +1,5 @@
 <div class="fundo">
   <div class="cards-agendamentos" *ngIf="agendamentos?.length !== 0">
-
     <ion-list *ngFor="let agendamento of agendamentos" [inset]="true">
       <ion-item>
         <ion-card (click)="consultarReserva(agendamento.id)">

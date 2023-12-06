@@ -65,7 +65,7 @@
 
   <ion-button [disabled]="!filtroCompleto()" class="botao1" size="small" id="open-modalHorarios" expand="block">HORÁRIOS</ion-button>
 
-  <ion-modal #modalHorarios trigger="open-modalHorarios" [initialBreakpoint]="0.65" [breakpoints]="[0.5, 0.75]">
+  <ion-modal #modalHorarios trigger="open-modalHorarios" [initialBreakpoint]="0.63" [breakpoints]="[0.5, 0.75]">
     <div class="modalHorarios" *ngIf="horarios?.length! > 0; else horariosEmpty">
       <ng-container *ngFor="let horarios of getHorariosPorLinhas()">
         <ion-row>
@@ -83,14 +83,14 @@
     <span *ngIf="filtroCompleto()">Não possui horários disponíveis!</span>
   </ng-template>
 
-  <ion-modal #modalResumo trigger="open-modalResumo" [initialBreakpoint]="0.3" [breakpoints]="[0.5, 0.75]">
+  <ion-modal #modalResumo trigger="open-modalResumo" [initialBreakpoint]="0.22" [breakpoints]="[0.5, 0.75]">
     <ng-template>
       <ion-content class="ion-padding">
-        Serviço: {{ reserva.servicos[0].descricao }}<br>
-        Barbeiro: {{ reserva.funcionario.nome }}<br>
-        Data e Hora: {{ reserva.dataHoraText }}<br>
-        Total: R${{ reserva.totalText }}<br>
-        <ion-button class="ion-margin" shape="round" expand="full" (click)="confirmar()">Confirmar!</ion-button>
+        <ion-label class="text">Serviço: {{ reserva.servicos[0].descricao }}</ion-label> <br>
+        <ion-label class="text">Barbeiro: {{ reserva.funcionario.nome }}</ion-label> <br>
+        <ion-label class="text">Data e Hora: {{ reserva.dataHoraText }}</ion-label> <br>
+        <ion-label class="text">Total: R${{ reserva.totalText }}</ion-label> <br>
+        <ion-button class="botao1" size="small" style="width: 100%; --background: #35221a;" shape="round" expand="full" (click)="confirmar()">CONFIRMAR!</ion-button>
       </ion-content>
     </ng-template>
   </ion-modal>
