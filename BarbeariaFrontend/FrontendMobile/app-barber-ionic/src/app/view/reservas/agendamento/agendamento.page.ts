@@ -21,6 +21,7 @@ export class AgendamentoPage implements OnInit {
   @ViewChild('modalData', { static: true }) modalData!: IonModal;
   @ViewChild('modalServicos', { static: true }) modalServicos!: IonModal;
   @ViewChild('modalResumo', { static: true }) modalResumo!: IonModal;
+  @ViewChild('modalHorarios', { static: true }) modalHorarios!: IonModal;
 
   constructor(
     private menuCtrl: MenuController,
@@ -202,7 +203,8 @@ export class AgendamentoPage implements OnInit {
   }
 
   voltar() {
-    this.navigation.navigateRoot("/tabs/reserva")
+    this.modalHorarios.dismiss();
+    this.navigation.navigateRoot("/tabs/reserva");
   }
 
   deslogar() {
