@@ -63,27 +63,21 @@
     </ng-template>
   </ion-modal>
 
-  <ion-button class="botao1" size="small" id="open-modalData" expand="block">HORÁRIOS</ion-button>
+  <ion-button [disabled]="!filtroCompleto()" class="botao1" size="small" id="open-modalHorarios" expand="block">HORÁRIOS</ion-button>
 
-  <!-- CRIAR AQUI O MODAL HORÁRIOS E JOGAR A DIV CLASS modalHorarios pra cá -->
-
-  <!-- <ion-modal #modalData trigger="open-modalData" [initialBreakpoint]="0.5" [breakpoints]="[0.5, 0.75]">
-
-  </ion-modal> -->
-
-  <div class="modalHorarios" *ngIf="horarios?.length! > 0; else horariosEmpty">
-    <ion-list>
+  <ion-modal #modalHorarios trigger="open-modalHorarios" [initialBreakpoint]="0.65" [breakpoints]="[0.5, 0.75]">
+    <div class="modalHorarios" *ngIf="horarios?.length! > 0; else horariosEmpty">
       <ng-container *ngFor="let horarios of getHorariosPorLinhas()">
         <ion-row>
           <ion-col size="4" *ngFor="let horario of horarios">
-            <ion-item (click)="abrirModalResumo(horario)">
+            <ion-item class="bordaHorario" (click)="abrirModalResumo(horario)">
               <ion-label>{{ horario }}</ion-label>
             </ion-item>
           </ion-col>
         </ion-row>
       </ng-container>
-    </ion-list>
-  </div>
+    </div>
+  </ion-modal>
 
   <ng-template #horariosEmpty>
     <span *ngIf="filtroCompleto()">Não possui horários disponíveis!</span>
