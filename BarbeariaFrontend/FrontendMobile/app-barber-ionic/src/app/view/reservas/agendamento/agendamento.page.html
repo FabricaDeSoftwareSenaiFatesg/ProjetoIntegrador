@@ -40,7 +40,7 @@
     <ng-template>
       <ion-content class="ion-padding">
         <div class="fundoModalProfissional">
-          <ion-list class="modalProfissional" *ngFor="let profissional of profissionais">
+          <ion-list style="margin-bottom: 20px;" class="modalProfissional" *ngFor="let profissional of profissionais">
             <ion-item (click)="selecionarProfissional(profissional)">
               <ion-avatar slot="start">
                 <ion-img [src]="obterConteudoFormatado(profissional.imagemPerfil)"></ion-img>

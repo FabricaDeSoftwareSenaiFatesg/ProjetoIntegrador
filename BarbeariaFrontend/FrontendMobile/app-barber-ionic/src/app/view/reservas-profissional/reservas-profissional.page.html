@@ -1,26 +1,33 @@
+<ion-header>
+  <ion-toolbar class="menu">
+    <ion-buttons slot="primary" class="botoes-container">
+      <div class="botoes-direita">
+        <ion-button (click)="deslogar()">
+          <ion-icon class="iconesMenu" size="large" name="log-in-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <div class="fundo">
+  <div class="painel" style="display: flex; justify-content: space-between; align-items: center;">
+    <ion-input type="date" style="color: white; width: 130px; margin-left: 25px;" [(ngModel)]="data"></ion-input>
 
-  <ion-header>
-    <div style="display: inline-block; margin-right: 10px">
-      <ion-input type="date" [(ngModel)]="data"></ion-input>
-    </div>
-
-    <div style="display: inline-block; margin-right: 10px">
-      <ion-list>
+    <ion-list style="--ion-item-background: #35221a;">
         <ion-item>
-          <ion-select [(ngModel)]="status" interface="popover">
-            <ion-select-option value="RESERVADO">Reservado</ion-select-option>
-            <ion-select-option value="FINALIZADO">Finalizado</ion-select-option>
-            <ion-select-option value="CANCELADO">Cancelado</ion-select-option>
-          </ion-select>
+            <ion-select [(ngModel)]="status" interface="popover">
+                <ion-select-option value="RESERVADO">Reservado</ion-select-option>
+                <ion-select-option value="FINALIZADO">Finalizado</ion-select-option>
+                <ion-select-option value="CANCELADO">Cancelado</ion-select-option>
+            </ion-select>
         </ion-item>
-      </ion-list>
-    </div>
+    </ion-list>
 
-    <div style="display: inline-block">
-      <ion-button (click)="consultarReservas()"><ion-icon name="search"></ion-icon></ion-button>
-    </div>
-  </ion-header>
+    <ion-button style="--background: #d18d60; --ion-color-primary-shade: #35221a; margin-right: 25px;" (click)="consultarReservas()">
+        <ion-icon name="search"></ion-icon>
+    </ion-button>
+  </div>
 
   <div class="cards-agendamentos" *ngIf="agendamentos?.length !== 0">
 
@@ -41,7 +48,5 @@
         </ion-card>
       </ion-item>
     </ion-list>
-
   </div>
-
 </div>

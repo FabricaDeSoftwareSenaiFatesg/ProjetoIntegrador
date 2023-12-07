@@ -4,7 +4,7 @@ import {StatusReservaEnum} from "../../../arquitetura/modelo/enum/status-reserva
 import {UsuarioService} from "../../../arquitetura/services/usuario.service";
 import {FiltroReservasProfissional} from "../../../arquitetura/modelo/filtro-reservas-profissional";
 import {ReservaListagemModel} from "../../../arquitetura/modelo/reserva-listagem.model";
-import {NavController} from "@ionic/angular";
+import {NavController, MenuController} from "@ionic/angular";
 
 @Component({
   selector: 'app-reservas-profissional',
@@ -20,6 +20,7 @@ export class ReservasProfissionalPage implements OnInit {
 
   constructor(
     private navigation: NavController,
+    private menuCtrl: MenuController,
     private usuarioService: UsuarioService,
     private agendamentoService: AgendamentoService
   ) { }
@@ -43,5 +44,15 @@ export class ReservasProfissionalPage implements OnInit {
 
   consultarReserva(id: number) {
     this.navigation.navigateRoot('/tabs/reserva-profissional/consultar-reserva-profissional/' + id)
+  }
+
+  deslogar() {
+    this.usuarioService.logout().subscribe(() => {
+      if (localStorage.getItem("ads_access_token") !== null) {
+        localStorage.removeItem("ads_access_token");
+      }
+      this.navigation.navigateRoot("login");
+    });
+    this.menuCtrl.open('end');
   }
 }
