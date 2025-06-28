@@ -1,15 +1,3 @@
-<div align="center" style="background-color: #e6eaf4;">
-    <img src="docs/Imagens/logo-faculdade-300.png" 
-         alt="Texto alternativo" 
-         title="Barber Helper"/>
-</div>
-<br>
-<br>
-<br>
-<div align="center">
-    <img src="docs/Logo/LogoEliasBarber_Prancheta.png" alt="Texto alternativo" />
-</div>
-<br>
 <h2> Projeto Barber Helper </h2>
 <h3> 1 - Visão Geral do Software </h3>
 
